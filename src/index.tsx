@@ -4,9 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import LanguageProvider from './contexts/localization';
+import AuthProvider from './contexts/auth';
+
+import './configs/localization/i18n';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,28 @@
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#avatar {
+    max-width: 36px;
+    background-color: black;
+}
+
+#userData {
+    // color: wheat;
+    font-weight: bold;
+    text-align: right;
+    height: 100%;
+}
+
+.span {
+    display: flex;
+}
+
+.dropDown {
+    & > .dropdown-menu {
+        min-width: 350px;
+    }
+}
