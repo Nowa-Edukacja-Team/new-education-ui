@@ -6,11 +6,12 @@ import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from "react-router-dom";
 
+import './configs/localization/i18n';
+
 import NavigationProvider from './contexts/navigation';
 import LanguageProvider from './contexts/localization';
 import AuthProvider from './contexts/auth';
-
-import './configs/localization/i18n';
+import LoadingIndicator from './components/loading/loading';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,8 +19,8 @@ ReactDOM.render(
       <AuthProvider>
         <NavigationProvider>
           <LanguageProvider>
-            <Suspense fallback={'Loading...'}>
-              <App />
+            <Suspense fallback={<LoadingIndicator />}>
+                <App />
             </Suspense>
           </LanguageProvider>
         </NavigationProvider>

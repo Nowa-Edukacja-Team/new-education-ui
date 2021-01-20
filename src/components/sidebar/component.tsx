@@ -13,19 +13,20 @@ import './styles.scss';
 interface SidebarProps {
     routes: SidebarRoute[];
     groups?: SidebarRouteGroup[];
+    className?: string;
 }
 
 export const Sidebar = (props: SidebarProps) => {
-    const { routes, groups } = props;
+    const { routes, groups, className } = props;
     const { routesByGroup, routesWithoutGroup } = useRoutes(routes);
     const { translate } = useLocalization();
 
     return (
-        <nav id='sidebarMenu' className='col-md-2 col-lg-2 d-md-block bg-light sidebar collapse'>
+        <nav id="sidebarMenu" className={className}>
             <span className='nav logo--container'>
                 <img src={translate('sidebar.logoUrl')} alt='Logo PWr' />
             </span>
-            <div className='position-sticky pt-3'>
+            <div className='position-sticky pt-3 sidebar'>
                 <NavDropdown.Header className='menu--header'>
                     Menu
                 </NavDropdown.Header>

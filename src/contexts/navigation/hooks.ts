@@ -7,10 +7,6 @@ export const useNavigation = () => {
     const state = useContext<_INavigationContextState>(_NavigationStateContext);
     const actions = useContext<_INavigationContextActions>(_NavigationDispatchContext);
 
-    useEffect(() => {
-        console.log('Route changed', state.activeRouteId);
-    }, [state.activeRouteId])
-
     return {
         state: state,
         actions: actions

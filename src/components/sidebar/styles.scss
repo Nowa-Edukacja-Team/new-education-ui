@@ -5,16 +5,13 @@
 }
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  /* rtl:raw:
-    right: 0;
-    */
-  bottom: 0;
-  /* rtl:remove */
-  left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 48px 0 0; /* Height of navbar */
+  font-size: 0.78rem;
+}
+
+#sidebarMenu {
+  height: 100vh;
+  z-index: 100;
+  padding: 12px 12px 0px;
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -30,7 +27,7 @@
   height: calc(100vh - 48px);
   padding-top: 0.5rem;
   overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  overflow-y: auto;
 }
 
 .sidebar .nav-link {
@@ -39,7 +36,7 @@
 }
 
 .sidebar .nav-link .feather {
-  margin-right: 4px;
+  margin-right: 6px;
   color: #727272;
 }
 
@@ -80,6 +77,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
   &::after {
     content: url("./expand_more.svg");
     transform: rotate(0deg);

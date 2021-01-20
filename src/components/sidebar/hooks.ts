@@ -80,19 +80,20 @@ export const useRoutes = (routes: SidebarRoute[]) => {
     }, [routes]);
 
     useEffect(() => {
-        if(activeRouteId && routesById[activeRouteId] && routesById[activeRouteId].path === location.hash) {
+        const pathname = location.pathname.endsWith('/') && location.pathname.length > 1 ? location.pathname.substring(0, location.pathname.length - 1) : location.pathname;
+        if(activeRouteId && routesById[activeRouteId] && pathname === routesById[activeRouteId].path) {
             return;
         }
-        const selectedRoute = routesByPath[location.hash];
-        console.log(state);
+        const selectedRoute = routesByPath[pathname];
         if(selectedRoute) {
             actions.changeActiveRoute(selectedRoute.id);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [location])
+    }, [location, routesById, routesByPath])
 
     return {
         routesWithoutGroup: routesWithoutGroup,
-        routesByGroup: routesByGroup
+        routesByGroup: routesByGroup,
+        location: location
     }
 }

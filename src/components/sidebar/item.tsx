@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import { SidebarRoute } from '../../configs/navigation/pages';
@@ -42,10 +42,10 @@ const SidebarRouteItem = (props: SidebarItemProps) => {
     return (
         <Fragment>
             <li className='nav-item'>
-                <a className={elClassName} aria-current='page' href={route.path}>
+                <Link to={route.path} className={elClassName} aria-current='page'>
                     <img src={route.iconUrl} alt={translate(`${route.label}`)} className='feather' />
                     {translate(`${route.label}`)}
-                </a>
+                </Link>
             </li>
             <NavDropdown.Divider />
         </Fragment>

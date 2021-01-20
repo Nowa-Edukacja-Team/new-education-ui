@@ -1,20 +1,35 @@
-import { Redirect } from 'react-router-dom';
+import { lazy } from 'react';
 import { Route } from "./types";
 
+const LazyTableView = lazy(() => import('../../components/tableview/tableView'));
+
+export const ErrorPageRoute = {
+    path: "/error/",
+    component: (props: any) => <div>Error Page</div>
+}
+
+export const MainPageRoute = {
+    path: "/",
+    exact: true,
+    component: (props: any) => <div {...props}>Main Page: {JSON.stringify(props, null, 2)}</div>
+}
+
+export const TableView = {
+    path: "/tableView/:objectType",
+    lazy: true,
+    component: (props: any) => <LazyTableView {...props} />
+}
+
+// export const UnknownRoute = {
+//     path: '/',
+//     component: (props: any) => <Redirect to={ErrorPageRoute.path.replace(':error', 'notFound')} />
+// }
+
 const routes: Route[] = [
-    {
-        path: "/",
-        exact: true,
-        hidden: true,
-        component: <Redirect to='/#/view'/>
-    },
-    {
-        path: "/#/view",
-        iconUrl: '/resources/routes/home.svg',
-        exact: true,
-        label: 'routes.main-page',
-        component: <div>Main Page</div>
-    }
+    ErrorPageRoute,
+    TableView,
+    MainPageRoute,
+    // UnknownRoute
 ]
 
 export type AppRoute = Route;
