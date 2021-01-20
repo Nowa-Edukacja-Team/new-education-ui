@@ -1,23 +1,23 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import englishTranslations from "./english";
-import polishTranslations from "./polish";
+import i18nHttpBackend from 'i18next-http-backend';
 
-const resources = {
-    'pl-PL': {
-        translation: {...polishTranslations}
-    },
-    'en-US': {
-        translation: {...englishTranslations}
-    }
-}
+import { defaultLanguage, languageCodes } from '../../contexts/localization/languages';
 
-i18n.use(initReactI18next)
-    .init({ 
-        resources, 
-        lng: 'pl-PL', 
+i18n.use(i18nHttpBackend)
+    .use(initReactI18next)
+    .init({
+        fallbackLng: defaultLanguage.code,
+        preload: languageCodes,
+        ns: ['translation'],
+        defaultNS: 'translation',
         keySeparator: '.', 
-        interpolation: { escapeValue: false } 
-    });
+        interpolation: { escapeValue: false },
+        backend: {
+            loadPath: '/resources/locale/{{lng}}.json',
+            allowMultiLoading: true,
+            crossDomain      : false
+        }
+    })
 
 export default i18n;

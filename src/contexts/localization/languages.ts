@@ -1,4 +1,4 @@
-import { _Language } from './types';
+import { Language } from './types';
 
 export enum Languages {
     POLISH,
@@ -14,14 +14,18 @@ const languagesById = {
     },
     [Languages.ENGLISH]: {
         id: Languages.ENGLISH,
-        code: 'en-US',
+        code: 'en-UK',
         name: 'English',
         flagUrl: '/resources/flags/united-kingdom.svg'
     }
 }
 
-export const availableLanguages: _Language[] = Object.values(languagesById);
+export const availableLanguages: Language[] = Object.values(languagesById);
 
 export const getLanguageById = (id: Languages) => {
     return languagesById[id] || languagesById[Languages.POLISH];
 }
+
+export const defaultLanguage = getLanguageById(Languages.POLISH);
+
+export const languageCodes = availableLanguages.map(lang => lang.code);

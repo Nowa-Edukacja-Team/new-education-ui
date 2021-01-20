@@ -1,35 +1,54 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import useEventListener from '../../../../hooks/eventListener';
 
 import './styles.scss';
 
-export interface CustomNavbarItemProps<T> {
+interface DropdownItemProps {
+    href?: string;
+    target?: boolean | string;
+    rel?: boolean | string;
+    disabled?: boolean;
+}
+
+interface CustomDropdownItemProps<T> {
     label: string | React.ReactNode;
     iconUrl: string;
-    disabled?: boolean;
     disabledHint?: string;
     onClick?: (payload: T) => void;
-}
+    keepOpenOnClick?: boolean;
+};
 
-const CustomNavbarItem = (props: CustomNavbarItemProps<any>) => {
-    const { iconUrl, label, disabled, disabledHint } = props;
+export type CustomNavbarItemProps<T> = DropdownItemProps & CustomDropdownItemProps<T>;
+
+const preventClick = (event: any) => {
+    event.stopImmediatePropagation();
+    console.log(event);
+};
+
+const CustomNavbarBase = (props: CustomNavbarItemProps<any>) => {
+    const { iconUrl, label, disabledHint, onClick, keepOpenOnClick, ...dropItemProps } = props;
+    const { disabled, href, target, rel } = dropItemProps;
+    const finalDropitemProps = { disabled, href, target, rel };
+    const objectRef = useEventListener({
+        type: 'click', 
+        func: preventClick, 
+        condition: keepOpenOnClick,
+        onClick: onClick,
+    });
 
     return (
-        <React.Fragment>
-            <span className='item--container'>
-                {label}
-                <img className='icon' src={iconUrl} alt='item-icon' />    
-            </span>
-            { disabled && disabledHint && <span className='hint'>{disabledHint}</span> }
-        </React.Fragment>
-    );
-}
+        <NavDropdown.Item {...finalDropitemProps} ref={objectRef} onClick={onClick} >
+            <Fragment>
+                <span className='item--container'>
+                    {label}
+                    <img className='icon' src={iconUrl} alt='item-icon' />    
+                </span>
+                { disabled && disabledHint && <span className='hint'>{disabledHint}</span> }
+            </Fragment>
+        </NavDropdown.Item>
+    )
+};
 
-export const CustomNavbarNavItem = (props: CustomNavbarItemProps<any>) => (
-    <NavDropdown.Item disabled={props.disabled} onClick={props.onClick}>
-        <CustomNavbarItem {...props} />
-    </NavDropdown.Item>
-)
-
-export default CustomNavbarItem;
+export default CustomNavbarBase;

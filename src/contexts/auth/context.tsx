@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import { useReducer, createContext } from "react";
 import { SET_USER_DATA } from "./actions";
 import { _AuthReducer, _initialAuthContextState } from "./reducer";
 import { _IAuthContextActions, _UserData } from "./types";
@@ -7,8 +7,8 @@ const initialActions: _IAuthContextActions = {
     setUserData: (userData: _UserData) => {}
 }
 
-export const _AuthDispatchContext = React.createContext(initialActions);
-export const _AuthStateContext = React.createContext(_initialAuthContextState);
+export const _AuthDispatchContext = createContext(initialActions);
+export const _AuthStateContext = createContext(_initialAuthContextState);
 
 export const AuthProvider = (props: any) => {
     const [state, dispatch] = useReducer(_AuthReducer, _initialAuthContextState);

@@ -1,15 +1,16 @@
 import { Languages } from './languages';
 import { LanguageActions } from './actions';
 
-export interface _Language {
+export interface Language {
     id: Languages
     code: string;
     name: string;
-    flagUrl: string; 
+    flagUrl: string;
 };
 
 export interface _ILanguageContextState {
-    selectedLanguage: _Language;
+    selectedLanguage: Language;
+    languages: Language[];
 }
 
 export interface _ILanguageReducer {

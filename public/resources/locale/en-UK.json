@@ -1,0 +1,48 @@
+{
+  "languages": {
+    "Polish": "Polish",
+    "English": "English"
+  },
+  "university": {
+    "name": "Wroclaw University of Science and Technology"
+  },
+  "topbar": {
+    "more": "More",
+    "settings": "Settings",
+    "logout": "Logout",
+    "changeLanguage": "Change Language",
+    "notAvailableYet": "Not available yet",
+    "currentLanguage": "Current Language",
+    "open_keycloak": "Open Keycloak panel"
+  },
+  "sidebar": {
+    "logoUrl": "/resources/common/pwr_eng.png",
+    "routes": {
+      "main-page": "Main Page",
+      "groups": {
+        "views": "Views",
+        "wizards": "Wizards"
+      },
+      "views": {
+        "study-programs": "Study Programs",
+        "study-plans": "Study Plans",
+        "study-effects": "Study Effects",
+        "subject-cards": "Subject Cards"
+      },
+      "wizards": {
+        "create": {
+          "study-program": "Create Study Program",
+          "study-plan": "Create Study Plan",
+          "study-effect": "Create Study Effect",
+          "subject-card": "Create Subject Card"
+        },
+        "update": {
+          "study-program": "Update Study Program",
+          "study-plan": "Update Study Plan",
+          "study-effect": "Update Study Effect",
+          "subject-card": "Update Subject Card"
+        }
+      }
+    }
+  }
+}

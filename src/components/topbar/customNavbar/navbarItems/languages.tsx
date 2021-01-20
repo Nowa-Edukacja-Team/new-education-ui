@@ -1,39 +1,44 @@
-import React from 'react';
+import { Fragment } from 'react';
 
-import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-import { useLocalization } from '../../../../contexts/localization';
-import { Languages } from '../../../../contexts/localization/languages';
-import { CustomNavbarNavItem, CustomNavbarItemProps } from './item';
+import { Language, useLocalization } from '../../../../contexts/localization';
+import CustomNavbarBase from './item';
 
-const LanguagesSelectorItem = (props: CustomNavbarItemProps<Languages>) => {
+const LanguagesSelectorItem = () => {
     const { translate, state, actions } = useLocalization();
-    const { selectedLanguage } = state;
+    const { selectedLanguage, languages } = state;
+
+    const getLanguageLabel = (language: Language, bold?: boolean) => {
+        const label = translate(`languages.${language.name}`)
+        return bold ? <b>{label}</b> : label
+    }
+
+    const buildLanguageOption = (language: Language) => (
+        <CustomNavbarBase
+            key={language.code}
+            label={getLanguageLabel(language, selectedLanguage.id === language.id)}
+            iconUrl={language.flagUrl}
+            disabled={selectedLanguage.id === language.id}
+            onClick={() => actions.changeLanguage(language.id)}
+            keepOpenOnClick={true}
+        />
+    )
 
     return (
-        <React.Fragment>
+        <Fragment>
             <NavDropdown.Divider />
-            <CustomNavbarNavItem 
+            <CustomNavbarBase 
                 label={translate('topbar.changeLanguage')} 
                 iconUrl={selectedLanguage.flagUrl} 
                 disabled 
                 disabledHint={`${translate(`topbar.currentLanguage`)}: ${translate(`languages.${selectedLanguage.name}`)}`}
             />
-            <CustomNavbarNavItem 
-                label={selectedLanguage.id === Languages.POLISH ? <b>{translate('languages.Polish')}</b>: translate('languages.Polish')} 
-                iconUrl='/resources/flags/poland.svg' 
-                disabled={selectedLanguage.id === Languages.POLISH} 
-                onClick={() => actions.changeLanguage(Languages.POLISH)} 
-            />
-            <CustomNavbarNavItem 
-                label={selectedLanguage.id === Languages.ENGLISH ? <b>{translate('languages.English')}</b>: translate('languages.English')} 
-                iconUrl='/resources/flags/united-kingdom.svg' 
-                disabled={selectedLanguage.id === Languages.ENGLISH} 
-                onClick={() => actions.changeLanguage(Languages.ENGLISH)}
-            />
+            <div className='lang--options'>
+                { languages.map(lang => buildLanguageOption(lang)) }
+            </div>
             <NavDropdown.Divider />
-        </React.Fragment>
+        </Fragment>
     )
 }
 

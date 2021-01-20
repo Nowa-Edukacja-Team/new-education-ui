@@ -1,6 +1,5 @@
-import CustomNavbarItem, { CustomNavbarItemProps } from "./item";
+import CustomNavbarBase, { CustomNavbarItemProps } from "./item";
 
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import './styles.scss';
 
 export interface RedirectNavbarItemProps extends CustomNavbarItemProps<void> {
@@ -9,13 +8,9 @@ export interface RedirectNavbarItemProps extends CustomNavbarItemProps<void> {
 }
 
 const RedirectNavbarElement = (props: RedirectNavbarItemProps) => {
-    const { redirectUrl, shouldOpenNewPage, iconUrl, label, disabled, disabledHint } = props;
+    const { redirectUrl, shouldOpenNewPage } = props;
 
-    return (
-        <NavDropdown.Item href={redirectUrl} target={shouldOpenNewPage && '_blank'} rel={shouldOpenNewPage && 'noopener noreferrer'} disabled={disabled}>
-            <CustomNavbarItem {...props} />
-        </NavDropdown.Item>
-    )
+    return <CustomNavbarBase href={redirectUrl} target={shouldOpenNewPage && '_blank'} rel={shouldOpenNewPage && 'noopener noreferrer'} {...props} />
 }
 
 export default RedirectNavbarElement;

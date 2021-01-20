@@ -1,0 +1,48 @@
+{
+  "languages": {
+    "Polish": "Polski",
+    "English": "Angielski"
+  },
+  "university": {
+    "name": "Politechnika Wrocławska"
+  },
+  "topbar": {
+    "more": "Szczegóły",
+    "settings": "Ustawienia",
+    "logout": "Wyloguj",
+    "changeLanguage": "Zmień język",
+    "notAvailableYet": "Opcja nie jest jeszcze dostepna",
+    "currentLanguage": "Obecny język",
+    "open_keycloak": "Otwórz panel Keycloak"
+  },
+  "sidebar": {
+    "logoUrl": "/resources/common/pwr.png",
+    "routes": {
+      "main-page": "Strona główna",
+      "groups": {
+        "views": "Widoki",
+        "wizards": "Wizardy"
+      },
+      "views": {
+        "study-programs": "Programy nauczania",
+        "study-plans": "Plany studiów",
+        "study-effects": "Efekty kształcenia",
+        "subject-cards": "Karty przedmiotów"
+      },
+      "wizards": {
+        "create": {
+          "study-program": "Utwórz program nauczania",
+          "study-plan": "Utwórz plan studiów",
+          "study-effect": "Utwórz efekt kształcenia",
+          "subject-card": "Utwórz kartę przedmiotu"
+        },
+        "update": {
+          "study-program": "Zaktualizuj program nauczania",
+          "study-plan": "Zaktualizuj plan studiów",
+          "study-effect": "Zaktualizuj efekt kształcenia",
+          "subject-card": "Zaktualizuj kartę przedmiotu"
+        }
+      }
+    }
+  }
+}

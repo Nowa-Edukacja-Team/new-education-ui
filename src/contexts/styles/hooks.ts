@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { _Context, _IStyleContextState } from './context';
+import { _Context } from './context';
 
 export const useStyle = () => {
     const state = useContext(_Context);

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { BrowserRouter } from "react-router-dom";
+
+import NavigationProvider from './contexts/navigation';
 import LanguageProvider from './contexts/localization';
 import AuthProvider from './contexts/auth';
 
@@ -11,11 +14,17 @@ import './configs/localization/i18n';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <LanguageProvider>
-        <App />
-      </LanguageProvider>
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <NavigationProvider>
+          <LanguageProvider>
+            <Suspense fallback={'Loading...'}>
+              <App />
+            </Suspense>
+          </LanguageProvider>
+        </NavigationProvider>
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

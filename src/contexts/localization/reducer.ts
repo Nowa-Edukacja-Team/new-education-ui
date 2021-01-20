@@ -1,9 +1,10 @@
 import { LANGUAGE_CHANGED_ACTION } from "./actions";
-import { getLanguageById, Languages } from "./languages";
-import { _Language, _ILanguageContextState, _LanguageContextAction } from "./types";
+import { availableLanguages, getLanguageById, Languages } from "./languages";
+import { _ILanguageContextState, _LanguageContextAction } from "./types";
 
-export const _initialLanguageContextState = {
-    selectedLanguage: getLanguageById(Languages.POLISH)
+export const _initialLanguageContextState: _ILanguageContextState = {
+    selectedLanguage: getLanguageById(Languages.POLISH),
+    languages: availableLanguages
 };
 
 const reducer = (state: _ILanguageContextState, action: _LanguageContextAction<any>) => {
@@ -13,6 +14,7 @@ const reducer = (state: _ILanguageContextState, action: _LanguageContextAction<a
             const targetLanguageId = correctAction.payload || Languages.POLISH;
             const targetLanguage = getLanguageById(targetLanguageId);
             return {
+                ...state,
                 selectedLanguage: targetLanguage
             }
     }

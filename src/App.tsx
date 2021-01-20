@@ -1,33 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { useLocalization } from './contexts/localization';
-import { Languages } from './contexts/localization/languages';
-import { useStyle } from './contexts/styles';
-import Topbar from './components/topbar/component';
+import Topbar from './components/topbar';
+import Sidebar from './components/sidebar';
+
+import sidebarRoutes, { sidebarRouteGroups } from './configs/navigation/pages';
 
 function App() {
-  const { translate, state, actions } = useLocalization('languages');
-  const { primaryColor, secondaryColor } = useStyle();
-  const { selectedLanguage } = state;
-  const { changeLanguage } = actions;
-
   return (
     <div className="App">
-      <Topbar />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <div>
-          <button onClick={() => changeLanguage(Languages.POLISH)}>Polish</button>
-          <button onClick={() => changeLanguage(Languages.ENGLISH)}>English</button>
-        </div>
-        <p>Primary color: {primaryColor}, Secondary Color: {secondaryColor}</p>
-        <p>Selected language is: {translate(selectedLanguage.name)}</p>
-        <img src={selectedLanguage.flagUrl} alt={selectedLanguage.name} />
+      <header className='sticky-top'>
+        <Topbar />
       </header>
+      <div className='row'>
+        <Sidebar routes={sidebarRoutes} groups={sidebarRouteGroups} />
+        <main className='col-md-9 ms-sm-auto col-1g-10 px-md-4'>
+          {/* <div className='bg-dark col-md-12'>
+            Test
+          </div> */}
+        </main>
+      </div>
     </div>
   );
 }

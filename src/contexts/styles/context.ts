@@ -1,4 +1,4 @@
-import React from "react";
+import { createContext } from "react";
 
 export interface _IStyleContextState {
     primaryColor: string;
@@ -10,4 +10,4 @@ const initialState: _IStyleContextState = {
     secondaryColor: 'blue'
 }
 
-export const _Context = React.createContext(initialState);
+export const _Context = createContext(initialState);
