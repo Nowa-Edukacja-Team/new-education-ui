@@ -1,0 +1,68 @@
+@import './variables';
+
+$color: white;
+$transparency: 0.6;
+$height-threshold: 834px;
+
+.app {
+  background-size: cover;
+}
+
+@media (max-height: $height-threshold) {
+  .app {
+    background-image: linear-gradient(0deg, rgba($color, $transparency), rgba($color, $transparency)), url('./other/background/pwr-back-medium.png');
+  }
+}
+
+@media (min-height: $height-threshold) {
+  .app {
+    background-image: linear-gradient(0deg, rgba($color, $transparency), rgba($color, $transparency)), url('./other/background/pwr-back-large.png');
+  }
+}
+
+.content-container {
+  background: $color;
+  margin: 10px -5px 60px 10px;
+  box-sizing: content-box;
+  -webkit-box-shadow: 0 0 10px  darkgray;
+  box-shadow: 0 0 10px darkgray;
+}
+
+.Mui-checked {
+  color: $primary !important;
+}
+
+.Mui-selected {
+  color: white !important;
+  background-color: $primary !important;
+
+  & .Mui-checked {
+    color: white !important;
+  }
+}
+
+.Mui-focused, .Mui-underline .Mui-focused {
+  color: $primary !important;
+}
+
+.MuiButton-textPrimary {
+  color: $primary !important;
+}
+
+.MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
+  background-color: $fontColor !important;
+}
+
+.MuiInput-underline:after {
+  border-bottom-color: $primary !important;
+}
+
+html:root {
+  --primary: $primary !important;
+  --secondary: $secondary !important;
+}
+
+a:active {
+  color: white;
+  background-color: $primary !important;
+}

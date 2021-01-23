@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, Suspense } from "react";
+import React, { Fragment, Suspense } from "react";
 import { Route, Redirect } from 'react-router-dom';
 import { Route as AppRoute } from "../../configs/routes/types";
 import { useAuthorizedRoute } from "../../hooks/authorization";

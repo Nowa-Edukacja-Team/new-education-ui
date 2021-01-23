@@ -44,5 +44,18 @@
         }
       }
     }
+  },
+  "tables": {
+    "management": {
+      "searchText": "Search",
+      "filters": "Filters",
+      "more-actions": "Actions"
+    }
+  },
+  "datagrid": {
+    "footer": {
+      "selectCount": "Selected {{count}} row(s)",
+      "totalCount": "Showing {{count}} from {{totalCount}} total results"
+    }
   }
 }

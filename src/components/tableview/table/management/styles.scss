@@ -1,0 +1,115 @@
+@import '../../../../variables';
+
+$action-width: max(200px, 25%);
+$action-margin: 5px;
+
+.management-container {
+
+    .searchTextField-label-focused {
+        color: $primary !important;
+    }
+
+    .searchTextField-focused {
+        & > fieldset {
+            color: $primary !important;
+            border-color: $primary !important;
+        }
+
+        #searchTextField-label {
+            color: $primary !important;
+        }
+    }
+}
+
+.actions-container {
+    overflow-x: hidden;
+    padding: 0;
+    min-width: max-content;
+
+    & > .action {
+        margin-right: $action-margin;
+        max-width: $action-width;
+        width: fit-content;
+    }
+
+    & .customButton-root {
+        max-height: 30px;
+        font-size: 0.7rem;
+        width: 100%;
+    }
+
+    & .moreActionsDropDown {
+        position: relative;
+        z-index: 1000;
+        overflow-y: visible !important;
+
+        & > #moreActionsButton {
+            &::after {
+                content: none;
+            }
+        }
+
+        // & .menu-action {
+        //     overflow-x: hidden;
+        //     width: 95%;
+        // }
+
+        & > .dropdown-menu {
+            position: fixed !important;
+            inset: 0px auto auto 0px;
+            z-index: 1001;
+            max-width: 400px;
+            overflow-x: hidden;
+
+            & .dropdown-item {
+                padding: .25rem 0.5rem;
+                & .item--container {
+                    padding: 5px 5px 5px 0px;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    
+                    & > p {
+                        padding-left: 5px;
+                        max-width: 100%;
+                        height: 100%;
+                        margin: 0px;
+                        display: table-cell;
+                        vertical-align: middle;
+                        overflow-x: hidden;
+                        position: relative;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        -ms-text-overflow: ellipsis;
+                        -o-text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.left-side {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+
+    & > .searchText {
+        width: 300px;
+    }
+
+    & > .customButton-root {
+        margin-left: 30px;
+        height: 30px;
+    }
+}
+
+.right-side {
+    overflow-x: hidden;
+    position: relative;
+    max-width: auto;
+    width: 70%;
+}

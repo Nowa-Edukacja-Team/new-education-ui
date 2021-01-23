@@ -44,5 +44,18 @@
         }
       }
     }
+  },
+  "tables": {
+    "management": {
+      "searchText": "Szukaj",
+      "filters": "Filtry",
+      "more-actions": "Akcje"
+    }
+  },
+  "datagrid": {
+    "footer": {
+      "selectCount": "Zaznaczono {{count}} rekord(ów)",
+      "totalCount": "Widocznych {{count}} z {{totalCount}} wyników"
+    }
   }
 }

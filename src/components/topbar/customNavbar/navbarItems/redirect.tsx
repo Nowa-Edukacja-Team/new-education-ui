@@ -1,6 +1,6 @@
-import CustomNavbarBase, { CustomNavbarItemProps } from "./item";
 
-import './styles.scss';
+import React from 'react';
+import CustomNavbarBase, { CustomNavbarItemProps } from '../../../forms/inputs/dropdownItem/item';
 
 export interface RedirectNavbarItemProps extends CustomNavbarItemProps<void> {
     redirectUrl: string;

@@ -1,0 +1,30 @@
+@import '../../../../variables';
+
+.customButton-root {
+    &:active, &:focus {
+        outline: 5px auto $primary;
+    }
+    &:hover {
+        outline: 1px auto $primary;
+    }
+    transition: outline 0.3s;
+}
+
+.customButton-root:disabled {
+    & .customButton-label {
+        color: $disabled;
+    }
+}
+
+.customButton-label {
+    color: $primary;
+    & > .customButton-p-label {
+        justify-content: flex-start;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        position: relative;
+    }
+}

@@ -1,0 +1,14 @@
+.item--container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    & > .icon {
+        max-width: 24px;
+    }
+}
+
+.hint {
+    font-size: 0.7rem;
+    color: lightgray;
+}

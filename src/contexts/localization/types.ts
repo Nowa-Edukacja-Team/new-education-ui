@@ -1,5 +1,6 @@
 import { Languages } from './languages';
 import { LanguageActions } from './actions';
+import { StringMap } from "i18next";
 
 export interface Language {
     id: Languages
@@ -14,7 +15,7 @@ export interface _ILanguageContextState {
 }
 
 export interface _ILanguageReducer {
-    translate: (label: string) => string,
+    translate: (label: string, options?: StringMap) => string,
     state: _ILanguageContextState,
     actions: _ILanguageContextActions,
 }

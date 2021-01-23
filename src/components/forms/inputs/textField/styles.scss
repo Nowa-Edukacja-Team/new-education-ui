@@ -1,0 +1,16 @@
+@import '../../../../variables';
+
+.searchTextField-label-focused {
+    color: $primary !important;
+}
+
+.searchTextField-focused {
+    & > fieldset {
+        color: $primary !important;
+        border-color: $primary !important;
+    }
+
+    #searchTextField-label {
+        color: $primary !important;
+    }
+}

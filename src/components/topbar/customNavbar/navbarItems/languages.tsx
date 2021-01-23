@@ -1,9 +1,9 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import { Language, useLocalization } from '../../../../contexts/localization';
-import CustomNavbarBase from './item';
+import CustomNavbarBase from '../../../forms/inputs/dropdownItem/item';
 
 const LanguagesSelectorItem = () => {
     const { translate, state, actions } = useLocalization();

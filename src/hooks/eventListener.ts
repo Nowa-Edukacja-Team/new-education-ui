@@ -1,15 +1,15 @@
 import { useRef, useEffect } from 'react';
 
 interface IEventListenerHookOptions {
-    type: string,
+    type: string | string[],
     func: (event: any) => void,
     condition?: boolean,
     onClick?: React.MouseEventHandler<any>;
 }
 
-const useEventListener = (options: IEventListenerHookOptions) => {
+const useEventListener = <T extends HTMLElement>(options: IEventListenerHookOptions) => {
     const { type, func, condition, onClick } = options;
-    const objectRef = useRef<HTMLElement>(null);
+    const objectRef = useRef<T>(null);
 
     useEffect(() => {
         const eventFunc = (event: any) => {
@@ -19,11 +19,18 @@ const useEventListener = (options: IEventListenerHookOptions) => {
             }
         }
 
-        if(objectRef && objectRef.current && condition) {
+        const getProperTypes = (types: string | string[]) => {
+            if(typeof types === 'string') {
+                return [types];
+            }
+            return types;
+        }
+
+        if(objectRef && objectRef.current && (condition === null || condition === undefined || condition)) {
             const refCurrent = objectRef.current;
-            refCurrent.addEventListener(type, eventFunc);
+            getProperTypes(type).forEach(eventType => refCurrent.addEventListener(eventType, eventFunc));
             return () => {
-                refCurrent.removeEventListener(type, eventFunc);
+                getProperTypes(type).forEach(eventType => refCurrent.removeEventListener(eventType, eventFunc));
             }
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps

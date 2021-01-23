@@ -1,0 +1,30 @@
+@import '../../../../variables';
+
+$max-underline-width-rule: min(200px, 100%);
+$underline-transition: max-width .25s;
+
+.title-container {
+    padding-left: 5px;
+
+    & > #title {
+        font-size: xx-large;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-width: $max-underline-width-rule;
+            height: 2px;
+            background-color: $primary;
+            transition: $underline-transition;
+        }
+
+        &:hover {
+            &::after {
+                max-width: 100%;
+            }
+        }
+    }
+}
