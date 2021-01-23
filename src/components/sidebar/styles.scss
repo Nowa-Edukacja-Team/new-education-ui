@@ -44,6 +44,8 @@
 
 .sidebar .nav-link.active {
   color: $primary;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -90,9 +92,18 @@
   }
 
   &.active {
-    
     &::after {
       transform: rotate(90deg);
     }
   }
+}
+
+a:active {
+  color: white !important;
+}
+
+.nav-item:hover {
+  background-color: $secondary;
+  font-size: 0.82rem;
+  transition: font-size 0.2s;
 }

@@ -32,12 +32,12 @@ interface NonContextAction extends BaseAction {
 
 interface SingleSelectionAction extends BaseAction {
     type: ActionType.SINGLE_SELECTION;
-    onClick: (type: string, id: number) => void;
+    onClick: (type: string, id: number | string) => void;
 }
 
 interface MultiSelectionAction extends BaseAction {
     type: ActionType.MULTI_SELECTION;
-    onClick: (type: string, id: number[]) => void;
+    onClick: (type: string, id: number[] | string[]) => void;
 }
 
 export type Action = NonContextAction | SingleSelectionAction | MultiSelectionAction;
@@ -86,10 +86,13 @@ interface CustomColumn<T> extends BaseColumn {
 
 export type Column<T> = TextColumn | NumberColumn | DateColumn | CustomColumn<T> | DateTimeColumn;
 
+// Details Pages
+export type DetailTabFunc = (type: string, id: number | string) => JSX.Element;
+
 // Custom Detail Page
-export interface CustomDetailPage<T> {
+export interface CustomDetailPage {
     label: string;
-    render: (object: T) => JSX.Element;
+    render: DetailTabFunc;
 }
 
 // Sorting

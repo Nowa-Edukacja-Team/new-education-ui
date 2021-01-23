@@ -1,0 +1,19 @@
+@import '../../../../../variables';
+
+.tab-header {
+    padding: 10px 15px 10px 10px;
+    color: $fontColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        background-color: $secondary;
+    }
+
+    &.active {
+        background-color: $primary;
+        color: white;
+        font-weight: bold;
+    }
+}

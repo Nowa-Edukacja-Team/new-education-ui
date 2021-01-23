@@ -1,0 +1,74 @@
+@import '../../../../../variables';
+
+.data-grid-footer {
+    width: 100%;
+    padding: 5px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $secondary;
+
+    & > .info {
+        display: flex;
+        align-items: flex-end;
+        padding-left: 5px;
+        color: $fontColor;
+        
+        & > .selectedCount {
+            margin-left: 10px;
+        }
+    }
+
+    & .MuiPagination-ul {
+        & li {
+            outline: none !important;
+            &:focus {
+                outline: none !important;
+                border: none;
+            }
+        }
+
+        & .Mui-selected {
+            background-color: $primary;
+            color: white;
+        }
+
+        & .MuiPaginationItem-root {
+            &:hover {
+                background-color: rgba($secondary, 0.4);
+            }
+        }
+    }
+}
+
+.data-grid-overlay.loading.overlay-container,
+.data-grid-overlay.norows.overlay-container,
+.data-grid-overlay.error.overlay-container {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-with-message {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+
+    & > .icon {
+        color: $primary;
+        width: 32px;
+        height: 32px;
+        // opacity: 0.4;
+    }
+
+    & > .text {
+        display: block;
+        padding-left: 15px;
+        color: $fontColor;
+        font-size: 1.1rem;
+        max-width: 40%;
+        text-align: justify;
+    }
+}

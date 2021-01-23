@@ -6,8 +6,16 @@ import routes from './configs/routes';
 import sidebarRoutes, { sidebarRouteGroups } from './configs/navigation/pages';
 
 import './App.scss';
+import { useLocalization } from './contexts/localization';
+import { useEffect } from 'react';
 
 const App = () => {
+  const { translate } = useLocalization();
+
+  useEffect(() => {
+    document.title = translate('app.name');
+  }, [translate])
+
   return (
     <div className="app">
       <header className='sticky-top'>

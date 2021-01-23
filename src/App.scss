@@ -57,6 +57,10 @@ $height-threshold: 834px;
   border-bottom-color: $primary !important;
 }
 
+.MuiInputBase-input {
+  color: black !important;
+}
+
 html:root {
   --primary: $primary !important;
   --secondary: $secondary !important;

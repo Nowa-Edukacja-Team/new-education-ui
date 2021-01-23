@@ -1,0 +1,20 @@
+@import '../../variables';
+
+.loading-indicator {
+    color: $primary;
+    width: 32px;
+    height: 32px;
+}
+
+.loading-indicator-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    & > .loading-indicator-text {
+        padding-left: 15px;
+        color: $fontColor;
+        font-size: 1.1em;
+    }
+}

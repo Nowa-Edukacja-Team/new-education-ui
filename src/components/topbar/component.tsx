@@ -10,7 +10,7 @@ export const Topbar = () => {
 
     return (
         <Navbar bg='light' expand='md'>
-            <Navbar.Brand>{translate('university.name')}</Navbar.Brand>
+            <Navbar.Brand>{translate('app.name')}</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <CustomNavbar>
                 <RedirectNavbarElement label={translate('topbar.settings')} iconUrl='/resources/common/settings.svg' redirectUrl='/settings' disabledHint={translate('topbar.notAvailableYet')} disabled />

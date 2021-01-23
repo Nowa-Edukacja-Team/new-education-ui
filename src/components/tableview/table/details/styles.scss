@@ -1,0 +1,43 @@
+@import '../../../../variables';
+
+.detail-tabs-container {
+    overflow-y: scroll;
+
+    & > .detail-tabs-current {
+        height: 0px; // to let overflow work
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+    background: $border; 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: $primary;
+}
+
+.detail-tabs-headers {
+    & > :first-child {
+        border-radius: 10px 0px 0px;
+    }
+
+    & > :last-child {
+        border-radius: 0px 10px 0px 0px;
+        border: solid 1px $border;
+        border-bottom: 0px;
+    }
+
+    & > div {
+        height: 40px;
+        max-width: 200px;
+        border: solid 1px $border;
+        border-right: 0px;
+        border-bottom: 0px;
+    }
+}

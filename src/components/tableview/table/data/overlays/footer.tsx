@@ -1,7 +1,9 @@
 import './styles.scss';
 
 import { Pagination } from '@material-ui/lab';
-import { useLocalization } from '../../../../contexts/localization';
+import { useLocalization } from '../../../../../contexts/localization';
+import { PropsWithChildren } from 'react';
+import { useGrid } from '../../context/hooks';
 
 interface FooterProps {
     rowCount: number;
@@ -14,7 +16,7 @@ interface FooterProps {
 
 const DataGridFooter = (props: FooterProps) => {
     const { selectedRowCount, rowCount, totalCount, currentPage, totalPages, onPageChange } = props;
-    const { translate } = useLocalization('datagrid.footer');
+    const { translate } = useLocalization('datagrid.overlays.footer');
 
     const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
         event.preventDefault();
@@ -34,4 +36,19 @@ const DataGridFooter = (props: FooterProps) => {
     )
 };
 
-export default DataGridFooter;
+export const FooterOverlay = (props: PropsWithChildren<any>) => {
+    const { pageData, handlePageChange, selectedRows } = useGrid();
+    const { totalPages, currentPage, count, totalCount } = pageData;
+
+    return (
+        <DataGridFooter 
+            onPageChange={handlePageChange}
+            rowCount={count}
+            totalCount={totalCount}
+            totalPages={totalPages}
+            currentPage={currentPage}
+            selectedRowCount={selectedRows.length}
+            {...props}
+        />
+    )
+}

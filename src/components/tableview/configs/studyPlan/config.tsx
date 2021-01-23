@@ -3,35 +3,23 @@ import { Add } from '@material-ui/icons';
 
 import { TableConfiguration } from "../../table/table";
 import { ActionType, ColumnTypes, FetchRequest } from "../../types";
-import { EmbeddedTableView } from "../../tableView";
-import { StudyPlanTableConfiguration } from "../studyPlan";
 
-interface StudyProgram {
+interface StudyPlan {
     id: number,
     name: string
 }
-
-// const getData = async (request: FetchRequest) => {
-//     return {
-//         data: [],
-//         count: 0,
-//         totalCount: 0,
-//         page: 1,
-//         totalPages: 1
-//     }
-// }
 
 const getData = async (request: FetchRequest) => {
     console.log('REQUESTING: ', request);
     if(request.paging.page === 1) {
         return {
             data: [
-                { id: 0, name: 'Name 1' },
-                { id: 1, name: 'Name 2' },
-                { id: 2, name: 'Name 3' },
-                { id: 3, name: 'Name 4' },
-                { id: 4, name: 'Name 5' },
-                { id: 5, name: 'Name 6' },
+                { id: 5, name: 'Name 1' },
+                { id: 4, name: 'Name 2' },
+                { id: 3, name: 'Name 3' },
+                { id: 2, name: 'Name 4' },
+                { id: 1, name: 'Name 5' },
+                { id: 0, name: 'Name 6' },
                 { id: 6, name: 'Name 1' },
                 { id: 7, name: 'Name 2' },
                 { id: 8, name: 'Name 3' },
@@ -59,9 +47,9 @@ const getData = async (request: FetchRequest) => {
     }
 }
 
-const StudyProgramTableConfiguration = {
-    title: 'Study Program',
-    type: 'StudyProgram',
+const StudyPlanTableConfiguration = {
+    title: 'Study Plan',
+    type: 'StudyPlan',
     actions: [
         {
             type: ActionType.NON_CONTEXT,
@@ -152,7 +140,7 @@ const StudyProgramTableConfiguration = {
             type: ColumnTypes.CUSTOM,
             name: 'status',
             label: 'Status',
-            value: (data: StudyProgram) => {
+            value: (data: StudyPlan) => {
                 return <div>ID: {data.id}, NAME: {data.name}</div>
             }
         }
@@ -160,11 +148,11 @@ const StudyProgramTableConfiguration = {
     detailsPage: (type, id) => <div>Type: {type}, Id: {id}</div>,
     customDetailsPages: [
         {
-            label: 'objects.StudyProgram.tabs.studyPlans',
-            render: (type, id) => <EmbeddedTableView configuration={StudyPlanTableConfiguration} />
+            label: 'Super Details',
+            render: (type, id) => <div>SuPER DETAILS FOR {type} and {id}</div>
         },
         {
-            label: 'objects.StudyProgram.tabs.versions',
+            label: 'Super Details 2',
             render: (type, id) => <div>SuPER DETAILS 2 FOR {type} and {id}</div>
         }
     ],
@@ -172,6 +160,6 @@ const StudyProgramTableConfiguration = {
     // .then(resp => {
     //     throw new Error("TEST");
     // })
-} as TableConfiguration<StudyProgram>;
+} as TableConfiguration<StudyPlan>;
 
-export default StudyProgramTableConfiguration;
+export default StudyPlanTableConfiguration;

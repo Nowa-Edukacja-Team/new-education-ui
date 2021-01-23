@@ -1,4 +1,7 @@
 {
+  "app": {
+    "name": "Edukacja 2.0"
+  },
   "languages": {
     "Polish": "Polski",
     "English": "Angielski"
@@ -50,12 +53,36 @@
       "searchText": "Szukaj",
       "filters": "Filtry",
       "more-actions": "Akcje"
+    },
+    "details": {
+      "name": "Szczegóły"
     }
   },
   "datagrid": {
-    "footer": {
-      "selectCount": "Zaznaczono {{count}} rekord(ów)",
-      "totalCount": "Widocznych {{count}} z {{totalCount}} wyników"
+    "overlays": {
+      "footer": {
+        "selectCount": "Zaznaczono {{count}} rekord(ów)",
+        "totalCount": "Widocznych {{count}} z {{totalCount}} wyników"
+      },
+      "loading": {
+        "message": "Pobieranie danych..."
+      },
+      "norows": {
+        "message": "Brak danych"
+      },
+      "error": {
+        "message": "Wystąpił nieoczekiwany bład! Jeśli ten problem będzie występował w przyszłości, skontaktuj się z administratorem"
+      }
+    }
+  },
+  "objects": {
+    "StudyProgram": {
+      "name": "Program nauczania",
+      "name-plural": "Programy nauczania",
+      "tabs": {
+        "studyPlans": "Plany nauczania",
+        "versions": "Wersje"
+      }
     }
   }
 }

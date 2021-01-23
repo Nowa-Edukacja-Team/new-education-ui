@@ -3,10 +3,20 @@
 }
 
 .table-data {
-    // min-height: max(400px, 40vh);
-    height: max(400px, 40vh);
+    min-height: max(400px, 40vh);
+    // height: max(400px, 40vh);
 }
 
 .table-details {
-    height: auto;
+    padding-top: 5px;
+    // overflow-y: scroll;
+    &.visible {
+        max-height: 100% !important;
+        // transition: max-height 1s ease-in-out;
+    }
+
+    &.hidden {
+        overflow-y: hidden;
+        max-height: 0px !important;
+    }
 }

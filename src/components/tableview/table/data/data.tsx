@@ -1,43 +1,32 @@
 import './styles.scss';
 
-import React, { useState } from 'react';
+import React from 'react';
 
-import { XGrid, RowId } from '@material-ui/x-grid';
-import DataGridFooter from './footer';
-import { GridConfiguration, useGrid } from './hooks';
+import { XGrid } from '@material-ui/x-grid';
+import { useGrid } from '../context/hooks';
+import { LoadingOverlay, FooterOverlay, NoRowsOverlay, ErrorOverlay } from './overlays';
 
-interface DataGridProps<T> {
-    config: GridConfiguration<T>;
-}
+const DataGrid = () => {
+    const { columns, pageData, status, handleSortChange, setSelectedRows } = useGrid();
+    const { isPending, isFailed, error } = status;
+    const { rows } = pageData;
 
-const DataGrid = <T, >(props: DataGridProps<T>) => {
-    const { config } = props;
-    const [ selectedRows, setSelectedRows ] = useState<RowId[]>([]);
-    const { 
-        columns, rows, 
-        handleSortChange, handlePageChange, 
-        count, totalCount, 
-        currentPage, totalPages
-    } = useGrid(config);
+    console.log(isFailed);
 
     return (
         <div className='data-grid'>
             <XGrid 
                 columns={columns}
                 rows={rows}
+                loading={isPending}
+                error={isFailed ? error : undefined}
                 checkboxSelection
                 onSortModelChange={handleSortChange}
                 components={{
-                    footer: (props) => 
-                        <DataGridFooter 
-                            totalPages={totalPages} 
-                            currentPage={currentPage} 
-                            rowCount={count} 
-                            totalCount={totalCount}
-                            onPageChange={handlePageChange}
-                            {...props} 
-                            selectedRowCount={selectedRows.length}
-                        />
+                    footer: FooterOverlay,
+                    loadingOverlay: LoadingOverlay,
+                    noRowsOverlay: NoRowsOverlay,
+                    errorOverlay: ErrorOverlay
                 }}
                 onSelectionChange={(selected) => setSelectedRows(selected.rowIds || [])}
             />
@@ -45,10 +34,10 @@ const DataGrid = <T, >(props: DataGridProps<T>) => {
     )
 }
 
-const TableData = <T, >(props: DataGridProps<T>) => {
+const TableData = () => {
     return (
         <div className='table-data-container'>
-            <DataGrid {...props} />
+            <DataGrid />
         </div>
     )
 };

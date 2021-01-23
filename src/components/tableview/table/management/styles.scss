@@ -42,6 +42,10 @@ $action-margin: 5px;
         position: relative;
         z-index: 1000;
         overflow-y: visible !important;
+        
+        & > a:active {
+            background-color: transparent !important;
+        }
 
         & > #moreActionsButton {
             &::after {

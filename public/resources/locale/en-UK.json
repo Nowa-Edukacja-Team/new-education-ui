@@ -1,4 +1,7 @@
 {
+  "app": {
+    "name": "Education 2.0"
+  },
   "languages": {
     "Polish": "Polish",
     "English": "English"
@@ -10,6 +13,7 @@
     "more": "More",
     "settings": "Settings",
     "logout": "Logout",
+    "title": "Edukacja 2.0",
     "changeLanguage": "Change Language",
     "notAvailableYet": "Not available yet",
     "currentLanguage": "Current Language",
@@ -50,12 +54,36 @@
       "searchText": "Search",
       "filters": "Filters",
       "more-actions": "Actions"
+    },
+    "details": {
+      "name": "Details"
     }
   },
   "datagrid": {
-    "footer": {
-      "selectCount": "Selected {{count}} row(s)",
-      "totalCount": "Showing {{count}} from {{totalCount}} total results"
+    "overlays": {
+      "footer": {
+        "selectCount": "Selected {{count}} row(s)",
+        "totalCount": "Showing {{count}} from {{totalCount}} total results"
+      },
+      "loading": {
+        "message": "Fetching data..."
+      },
+      "norows": {
+        "message": "No data"
+      },
+      "error": {
+        "message": "Unexpected error happened! If this problem is persistent please contact your administrator"
+      }
+    }
+  },
+  "objects": {
+    "StudyProgram": {
+      "name": "Study Program",
+      "name-plural": "Study Programs",
+      "tabs": {
+        "studyPlans": "Study Plans",
+        "versions": "Versions"
+      }
     }
   }
 }

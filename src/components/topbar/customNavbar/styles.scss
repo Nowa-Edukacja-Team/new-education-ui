@@ -1,3 +1,5 @@
+@import '../../../variables';
+
 .column {
     display: flex;
     flex-direction: column;
@@ -24,5 +26,17 @@
 .dropDown {
     & > .dropdown-menu {
         min-width: 350px;
+    }
+
+    &:hover {
+        background-color: transparent !important;
+        font-size: $fontSize !important;
+    }
+
+    &:active {
+        & > a {
+            background-color: transparent !important;
+            color: black !important;
+        }
     }
 }

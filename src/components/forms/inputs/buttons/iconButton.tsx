@@ -22,7 +22,7 @@ interface CustomButtonInnerProps extends OwnButtonProps {
 }
 
 const CustomButtonInner = forwardRef((props: CustomButtonInnerProps, ref: any) => {
-    const { iconPosition, icon, text, onClick, labelRef, ...rest } = props;
+    const { iconPosition, icon, text, labelRef, ...rest } = props;
 
     const getIconPositionProperty = (position: IconPosition, icon?: React.ReactNode) => {
         if(icon === undefined || icon === null || position === IconPosition.NONE) {
