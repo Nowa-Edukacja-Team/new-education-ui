@@ -1,0 +1,76 @@
+@import '../../../variables';
+
+.wizard {
+    overflow-y: hidden;
+    & > .wizard-title {
+        font-size: 1.5rem;
+        align-items: center;
+        padding: 5px 5px 5px 15px;
+        min-height: min(60px, 5%);
+    }
+
+    & > .wizard-form-container {
+        height: 0px;
+    }
+
+    & > .wizard-footer {
+        padding: 5px;
+        min-height: min(60px, 5%);
+    }
+}
+
+.wizard-title {
+    padding-left: 5px;
+
+    & > .title {
+        font-size: xx-large;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-width: $max-underline-width-rule;
+            height: 2px;
+            background-color: $primary;
+            transition: $underline-transition;
+        }
+
+        &:hover {
+            &::after {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+.wizard-footer {
+    margin-right: 15px;
+
+    & .footer-btn-cancel {
+        margin-right: 15px;
+    }
+
+    & > .footer-btn {
+        max-height: max(40px, 4%);
+    }
+}
+
+
+.wizard-form-container {
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+
+    & > .col.form {
+        max-width: min(700px, 90%);
+        padding: 20px;
+    }
+}
+
+.form-field {
+    & > .MuiFormControl-root, & > div {
+        width: 100% !important;
+    }
+}

@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import { Route } from "./types";
 
 const LazyTableView = lazy(() => import('../../components/tableview/tableView'));
+const LazyCreateWizardView = lazy(() => import('../../components/forms/wizards/createWizardView'));
 
 export const ErrorPageRoute = {
     path: "/error/",
@@ -20,6 +21,12 @@ export const TableView = {
     component: (props: any) => <LazyTableView {...props} />
 }
 
+export const CreateWizardView = {
+    path: "/wizard/create/:objectType",
+    lazy: true,
+    component: (props: any) => <LazyCreateWizardView {...props} />
+}
+
 // export const UnknownRoute = {
 //     path: '/',
 //     component: (props: any) => <Redirect to={ErrorPageRoute.path.replace(':error', 'notFound')} />
@@ -28,6 +35,7 @@ export const TableView = {
 const routes: Route[] = [
     ErrorPageRoute,
     TableView,
+    CreateWizardView,
     MainPageRoute,
     // UnknownRoute
 ]

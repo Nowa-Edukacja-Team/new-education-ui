@@ -7,7 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 import CustomButton, {
     IconPosition,
-} from "../../../forms/inputs/buttons/iconButton";
+} from "../../../forms/inputs/buttons/button";
 import { Action } from "../../types";
 import { useLocalization } from "../../../../contexts/localization";
 import MenuActionItem from "./item";
