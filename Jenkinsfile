@@ -5,13 +5,14 @@ pipeline {
       registry = "new-education/new-education-ui"
       version = "latest"
       registryCredential = "dockerhub"
+      dockerImage = ''
   }
 
   stages {
     stage('Create Image') {
       steps {
         script {
-            docker.build registry + ":" + version
+            dockerImage = docker.build registry + ":" + version
         }
       }
     }
