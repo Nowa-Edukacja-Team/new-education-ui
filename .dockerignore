@@ -1,3 +1,12 @@
 node_modules
 npm-debug.log
 yarn-error.log
+
+.vscode
+kubernetes
+.prettierrc
+.gitignore
+.eslintcache
+LICENSE
+Jenkinsfile
+README.md
