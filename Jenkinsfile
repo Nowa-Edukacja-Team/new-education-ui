@@ -35,6 +35,7 @@ pipeline {
         withKubeConfig([credentialsId: 'kubeconfig']) {
           sh 'kubectl get namespace ui || kubectl create namespace ui'
         }
+      }
     }
     stage('Deploy to cluster') {
       steps {
