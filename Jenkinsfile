@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-      registry = "new-education/new-education-ui"
+      registry = "neweducation/new-education-ui"
       version = "latest"
       registryCredential = "dockerhub"
       dockerImage = ''
