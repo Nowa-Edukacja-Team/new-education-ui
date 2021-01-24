@@ -2,35 +2,37 @@ pipeline {
   agent any
 
   environment {
-      PACKAGE_NAME = "new-education/new-education-ui"
-      PACKAGE_VERSION = "latest"
-  }    
+      registry = "new-education/new-education-ui"
+      version = "latest"
+      registryCredential = "dockerhub"
+  }
 
   stages {
-    stage('Docker Build') {
+    stage('Create Image') {
       steps {
-        sh "docker build -t ${env.PACKAGE_NAME}:${env.PACKAGE_VERSION} ."
-      }
-    }
-    stage('Docker Push') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh "docker push ${env.PACKAGE_NAME}:${env.PACKAGE_VERSION}"
+        script {
+            docker.build registry + ":" + version
         }
       }
     }
-    stage('Docker Remove Image') {
+    stage('Publish image to DockerHub') {
       steps {
-        sh "docker rmi ${env.PACKAGE_NAME}:${env.PACKAGE_VERSION}"
+        docker.withRegistry('', registryCredential) {
+            dockerImage.push()
+        }
+      }
+    }
+    stage('Remove created Image') {
+      steps {
+        sh "docker rmi $registry:$version"
       }
     }
     stage('Apply Kubernetes Files') {
       steps {
           withKubeConfig([credentialsId: 'kubeconfig']) {
-          sh 'cd kubernetes'
-          sh 'cat deployment.yml | sed "s/{{PACKAGE_VERSION}}/$PACKAGE_VERSION/g" |  sed "s/{{PACKAGE_NAME}}/$PACKAGE_NAME/g" | kubectl apply -f -'
-          sh 'kubectl apply -f service.yml'
+            sh 'cd kubernetes'
+            sh 'cat deployment.yml | sed "s/{{PACKAGE_VERSION}}/$version/g" |  sed "s/{{PACKAGE_NAME}}/$registry/g" | kubectl apply -f -'
+            sh 'kubectl apply -f service.yml'
         }
       }
     }
