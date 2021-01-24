@@ -3,5 +3,9 @@ $secondary: #FBF4EF;
 $disabled: darkgray;
 $fontColor: #936B52;
 $border: #CF6679;
+$disabledColor: rgba(0, 0, 0, 0.26);
 
 $fontSize: 0.875rem;
+
+$max-underline-width-rule: min(200px, 100%);
+$underline-transition: max-width .25s;

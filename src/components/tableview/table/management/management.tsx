@@ -5,7 +5,7 @@ import { Add } from '@material-ui/icons';
 import { useLocalization } from '../../../../contexts/localization';
 import CustomTextField from '../../../forms/inputs/textField';
 import React from 'react';
-import CustomButton, { IconPosition } from '../../../forms/inputs/buttons/iconButton';
+import CustomButton, { IconPosition } from '../../../forms/inputs/buttons/button';
 import { Action } from '../../types';
 import TableManagementActions from './actions';
 import { useGridSearchText } from './hooks';

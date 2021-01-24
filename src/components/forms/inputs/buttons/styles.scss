@@ -27,4 +27,34 @@
         -o-text-overflow: ellipsis;
         position: relative;
     }
+
+    &.MuiButton-contained {
+        color: $fontColor !important;
+        background-color: $primary;
+    }
+}
+
+.customButton-contained {
+    background-color: $primary !important;
+    color: $fontColor !important;
+
+    & .customButton-label {
+        color: $secondary !important;
+    }
+
+}
+
+.customButton-disabled {
+    background-color: lightgrey !important;
+}
+
+.customIconButton {
+    color: $primary !important;
+    &:focus {
+        outline: none;
+    }
+}
+
+.customIconButton--disabled {
+    color: $disabledColor !important;
 }

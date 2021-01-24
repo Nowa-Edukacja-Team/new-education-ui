@@ -7,7 +7,9 @@ type OwnInputLabelProps = Partial<InputLabelProps>;
 
 type MergableProps = OwnInputProps | OwnInputLabelProps;
 
-const CustomTextField = (props: Omit<TextFieldProps, 'variant'>) => {
+export type CustomTextFieldProps = Omit<TextFieldProps, 'variant'>;
+
+const CustomTextField = (props: CustomTextFieldProps) => {
     const { label, InputProps, InputLabelProps, ...rest } = props;
 
     const mergeProps = <T extends MergableProps>(original: T, custom: T) => {
