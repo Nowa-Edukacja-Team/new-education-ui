@@ -30,7 +30,7 @@ pipeline {
         sh "docker rmi $registry:$version"
       }
     }
-    stage('Apply Kubernetes Files') {
+    stage('Deploy to cluster') {
       steps {
           withKubeConfig([credentialsId: 'kubeconfig']) {
             sh 'cd kubernetes'
