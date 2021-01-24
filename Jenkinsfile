@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-      PACKAGE_NAME = "new-education/new-education-ui",
+      PACKAGE_NAME = "new-education/new-education-ui"
       PACKAGE_VERSION = "latest"
   }    
 
