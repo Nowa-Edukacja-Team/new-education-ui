@@ -5,7 +5,6 @@ import { handleColumns, handleSorting } from "./utils";
 import { GridContext, GridDispatcherContext } from "./context";
 import { handleData } from "./utils";
 import { Grid } from "./types";
-import { type } from "os";
 
 export interface GridConfiguration<T> {
     type: string;
@@ -56,7 +55,7 @@ export const useGrid = <T>() => {
     const handleSortChange = (sortModelParams: SortModelParams) => {
         setSorting(handleSorting(sortModelParams.sortModel))
     };
-    
+
     return {
         columns: columns,
         pageData: pageData,

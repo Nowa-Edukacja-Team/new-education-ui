@@ -1,21 +1,6 @@
-import { TextField, InputLabel, InputLabelProps, TextFieldProps, InputProps, FilledInputProps, OutlinedInputProps } from '@material-ui/core';
-import { PropsWithChildren } from 'react';
-
 import './styles.scss';
 
-const SearchFieldLabel = (props: PropsWithChildren<InputLabelProps>) => {
-    const { children, ...rest } = props;
-    return (
-        <InputLabel
-            classes={{
-                focused: 'searchTextField-label-focused'
-            }}
-            {...rest}
-        >
-            {children}
-        </InputLabel>
-    )
-}
+import { TextField, InputLabelProps, TextFieldProps, InputProps, FilledInputProps, OutlinedInputProps } from '@material-ui/core';
 
 type OwnInputProps = Partial<InputProps> | Partial<FilledInputProps> | Partial<OutlinedInputProps>;
 type OwnInputLabelProps = Partial<InputLabelProps>;
