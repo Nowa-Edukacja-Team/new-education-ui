@@ -33,7 +33,7 @@ pipeline {
     stage('Deploy to cluster') {
       steps {
           withKubeConfig([credentialsId: 'kubeconfig']) {
-            sh 'cat ./kubernetes/deployment.yml | sed "s/{{PACKAGE_VERSION}}/$version/g" |  sed "s/{{PACKAGE_NAME}}/$registry/g" | kubectl apply -f -'
+            sh 'cat ./kubernetes/deployment.yml | sed "s#{{PACKAGE_VERSION}}#$version#g" | sed "s#{{PACKAGE_NAME}}#$registry#g" | kubectl apply -f -'
             sh 'kubectl apply -f ./kubernetes/service.yml'
         }
       }
