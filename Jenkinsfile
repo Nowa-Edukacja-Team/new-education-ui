@@ -3,7 +3,7 @@ pipeline {
 
   environment {
       registry = "neweducation/new-education-ui"
-      version = "latest"
+      version = "v0.0.$BUILD_NUMBER"
       registryCredential = "dockerhub"
       dockerImage = ''
   }
