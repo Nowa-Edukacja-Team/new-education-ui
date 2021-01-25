@@ -10,7 +10,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 # install dependencies
 COPY package*.json ./
 
-RUN yarn install --silent
+RUN yarn install
 # RUN npm ci --only=production # production
 
 # Bundle sources
