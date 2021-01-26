@@ -25,15 +25,17 @@ const CustomTextField = (props: CustomTextFieldProps) => {
 
     const ownInputProps = {
         classes: {
-            focused: 'searchTextField-focused'
+            focused: 'searchTextField-focused',
+            error: 'searchTextField-error'
         }
-    }
+    } as OwnInputProps;
 
     const ownInputLabelProps = {
         classes: {
-            focused: 'searchTextField-label-focused'
+            focused: 'searchTextField-label-focused',
+            error: 'searchTextField-label-error'
         }
-    }
+    } as OwnInputLabelProps;
 
     const inputProps = InputProps ? mergeProps(InputProps, ownInputProps) : ownInputProps;
     const labelInputProps = InputLabelProps ? mergeProps(InputLabelProps, ownInputLabelProps) : ownInputLabelProps;
@@ -44,6 +46,7 @@ const CustomTextField = (props: CustomTextFieldProps) => {
                 variant='outlined'
                 InputProps={inputProps}
                 InputLabelProps={labelInputProps}
+                required={true}
                 {...rest}
             />
     )

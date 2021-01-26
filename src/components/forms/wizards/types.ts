@@ -19,6 +19,8 @@ interface BaseFieldDefinition<T, P extends FieldProps> {
     name: string;
     label: string;
     type: FieldType;
+    required?: boolean;
+    errored?: boolean;
     Component: React.ComponentType<P | {}>;
     validate: (value: T) => void | string | undefined;
     props?: P;

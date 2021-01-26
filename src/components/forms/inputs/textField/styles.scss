@@ -15,6 +15,17 @@
     }
 }
 
+.searchTextField-error {
+    & > fieldset {
+        color: red !important;
+        border-color: red !important;
+    }
+
+    #searchTextField-label {
+        color: $primary !important;
+    }
+}
+
 .MuiTextField-root {
     width: 100%;
 }

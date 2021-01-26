@@ -45,14 +45,18 @@ const Wizard = <T, >(props: WizardProps<T>) => {
 export const withFormik = <T, >(BaseComponent: React.ComponentType<WizardProps<T>>) => (props: WizardProps<T>) => {
     const { config } = props;
     const { initialValues, onSubmit, fields } = config;
-    
+
     const formik = useFormik<T>({
         initialValues: initialValues,
-        onSubmit: (values, ) => {
+        onSubmit: (values, helpers) => {
             onSubmit(values);
         },
-        validate: (values) => validateFieldsAsync(fields, values),
+        validate: (values) => {
+            return validateFieldsAsync(fields, values);
+        },
     });
+
+    console.log(formik.errors);
 
     return (
         <FormikProvider value={formik}>

@@ -1,27 +1,29 @@
-import { Autocomplete, AutocompleteProps } from '@material-ui/lab';
-import React from "react";
+import DeficitsField, { DeficitsFieldProps } from '../../../../components/forms/inputs/deficits';
 import SearchBox, { SearchBoxProps } from '../../../../components/forms/inputs/searchBox';
 import CustomTextField, { CustomTextFieldProps } from "../../../../components/forms/inputs/textField";
 import { WizardConfiguration, FieldType, FieldDefinition } from "../../../../components/forms/wizards/types";
 import { StudyPlanEntity } from "../types";
 
 const StudyPlanCreateWizardConfiguration = {
-    label: 'Study Plan Create Wizard',
+    label: 'objects.StudyPlan.wizards.create',
     type: 'StudyPlan',
-    submitBtnLabel: 'Create',
+    submitBtnLabel: 'wizards.buttons.submit',
     initialValues: {
-        // id: 5,
-        // name: '10',
-        // multiValProperty: ["Raz", "Dwa"]
+        deficits: [
+            { semester: 1, limit: 0 },
+            { semester: 2, limit: 0 },
+            { semester: 3, limit: 0 }
+        ]
     },
     fields: [
         {
-            name: 'name',
-            label: 'Name field',
+            name: 'studyProgram',
+            label: 'objects.StudyPlan.fields.studyProgram.name',
+            required: true,
             type: FieldType.SINGLE,
-            validate: (name: string) => {
-                if(name === 'testError')
-                    return 'WRONG VALUE'
+            validate: (val: string) => {
+                if(val === undefined || val === null)
+                    return 'objects.StudyPlan.fields.studyProgram.validations.empty'
             },
             Component: SearchBox,
             props: {
@@ -32,21 +34,28 @@ const StudyPlanCreateWizardConfiguration = {
             }
         } as FieldDefinition<string, SearchBoxProps<string>>,
         {
-            name: 'multiValProperty',
-            label: 'Multi value field',
+            name: 'deficits',
+            label: 'objects.StudyPlan.fields.deficits.name',
             type: FieldType.MULTI,
-            minCount: 2,
-            maxCount: 5,
-            initialCount: 2,
+            minCount: 3,
+            maxCount: 7,
+            initialCount: 3,
+            required: true,
             validate: (name: string) => {
                 console.log("VAL: ", name);
             },
-            Component: CustomTextField,
+            Component: DeficitsField,
             props: {
-                variant: 'outlined',
-                label: 'TEEEST'
+                semesterFieldProps: {
+                    label: 'objects.StudyPlan.fields.deficits.semester',
+                    required: true
+                },
+                deficitFieldProps: {
+                    label: 'objects.StudyPlan.fields.deficits.allowed',
+                    required: true
+                }
             }
-        } as FieldDefinition<string, CustomTextFieldProps>
+        } as FieldDefinition<string, DeficitsFieldProps>
     ],
     onSubmit: (studyPlan: StudyPlanEntity) => {
         return alert(JSON.stringify(studyPlan as StudyPlanEntity, null, 2));

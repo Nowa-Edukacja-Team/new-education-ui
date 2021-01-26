@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import MultiValueField from '../inputs/multiValue';
 
 import { FieldDefinition, FieldProps, FieldType, MultiFieldDefinition, WizardFormConfiguration } from "./types";
+import { useLocalization } from '../../../contexts/localization';
 
 
 interface MultiValueFormFieldProps<T> {
@@ -76,24 +77,24 @@ interface FormRowProps<T> {
     field: FieldDefinition<T, FieldProps>;
     fieldPropsFunc: (nameOrOptions: any) => FieldInputProps<T>;
     onValueUpdate: (value: T) => void;
+    errors?: string;
 }
 
 const FormRow = <T, >(props: FormRowProps<T>) => {
-    const { field, fieldPropsFunc, onValueUpdate } = props;
+    const { field, fieldPropsFunc, onValueUpdate, errors } = props;
+    const { translate } = useLocalization();
+
+    console.log()
 
     return (
         <div className='field--container row w-100 pt-2 pl-3 pr-3'>
-            <Field type="hidden" name={field.name} />
+            {/* <Field type="hidden" name={field.name} required={field.required} /> */}
             <FormField 
                 definition={field} 
                 fieldPropsFunc={fieldPropsFunc}
                 onValueUpdate={onValueUpdate}
             />
-            <ErrorMessage name={field.name}>
-                { (text) => (
-                    <span className='error--message row w-100'>{text}</span>
-                )}
-            </ErrorMessage>
+            { errors && <span className='error--message row w-100'>{translate(errors)}</span>}
         </div>
     )
 }
@@ -106,18 +107,23 @@ const Form = <T, >(props: CompleteFormProps<T>) => {
     const { fields, formik } = props;
     const { getFieldProps, handleSubmit, setFieldValue } = formik;
     
+    console.log(formik.errors);
+
     return (
             <form className='col form d-flex flex-column align-content-start' onSubmit={handleSubmit} noValidate>
+                <React.Fragment>
                 {
                     fields.map(field => {
-                        return <FormRow key={field.name} 
+                        return <FormRow 
+                                    key={field.name} 
                                     field={field}
                                     fieldPropsFunc={getFieldProps}
+                                    errors={(formik.errors as any)[field.name]}
                                     onValueUpdate={(value) => setFieldValue(field.name, value, true)}
                                 />
                     })
                 }
-                <button>SUBMIT</button>
+                </React.Fragment>
             </form>
     )
 };

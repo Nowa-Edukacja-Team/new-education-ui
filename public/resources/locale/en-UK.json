@@ -84,13 +84,37 @@
         "studyPlans": "Study Plans",
         "versions": "Versions"
       }
+    },
+    "StudyPlan": {
+      "fields": {
+        "studyProgram": {
+          "name": "Study Plan",
+          "validations": {
+            "empty": "Study Plan is required!"
+          }
+        },
+        "deficits": {
+          "name": "Allowed deficits",
+          "semester": "Semester Number",
+          "allowed": "Allowed deficit"
+        }
+      },
+      "wizards": {
+        "create": "Create Study Plan",
+        "update": "Create new Study Plan version"
+      }
     }
   },
   "wizards": {
     "utils": {
       "min": "(min. {{minCount}})",
       "max": "(max. {{maxCount}})",
-      "min-max": "(min. {{minCount}}, max. {{maxCount}})"
+      "min-max": "(min. {{minCount}}, max. {{maxCount}})",
+      "required": "Required"
+    },
+    "buttons": {
+      "submit": "Create",
+      "cancel": "Cancel"
     }
   }
 }

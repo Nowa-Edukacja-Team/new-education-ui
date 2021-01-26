@@ -1,6 +1,8 @@
 import { Autocomplete, AutocompleteRenderOptionState, Value } from "@material-ui/lab";
 import { Field, FieldInputProps, FieldProps } from "formik";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next/*";
+import { useLocalization } from "../../../../contexts/localization";
 import CustomTextField from "../textField";
 
 export interface SearchBoxProps<
@@ -13,6 +15,7 @@ export interface SearchBoxProps<
     disableClearable?: DisableClearable;
     multiple?: Multiple;
     freesolo?: FreeSolo;
+    required?: boolean;
     fetchOptions: (text: string) => Promise<T[]>;
     getOptionLabel: (option: T) => string;
     customRender?: (val: T, s?: AutocompleteRenderOptionState) => React.ReactNode;
@@ -24,7 +27,9 @@ const SearchBox = <
     DisableClearable extends boolean = false,
     FreeSolo extends boolean = false
 >(props: SearchBoxProps<T, Multiple, DisableClearable, FreeSolo>) => {
-    const { onBlur, name, fetchOptions, customRender, getOptionLabel } = props;
+    const { onBlur, name, fetchOptions, customRender, getOptionLabel, ...restProps } = props;
+    const { label } = restProps as any;
+    const { translate } = useLocalization();
     const [options, setOptions] = useState<T[]>([]);
 
     const handleSearchTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +48,7 @@ const SearchBox = <
     return (
         <Field 
             name={name}
+            required={true}
         >
         {
             ({ field,  form }: FieldProps<T, any>) => (
@@ -60,7 +66,9 @@ const SearchBox = <
                     renderOption={(val, s) => customRender ? customRender(val, s) : defaultRender(val)}
                     renderInput={(params) => (
                         <CustomTextField
-                            {...params}  
+                            {...params}
+                            {...restProps}
+                            label={translate(label)}
                             name={name}
                             onChange={(handleSearchTextChange)} 
                         />    

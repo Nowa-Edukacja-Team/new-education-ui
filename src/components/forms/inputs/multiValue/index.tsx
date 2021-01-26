@@ -6,6 +6,7 @@ import { Add, Delete } from '@material-ui/icons';
 
 import { useLocalization } from '../../../../contexts/localization';
 import CustomIconButton from '../buttons/iconButton';
+import { validateFieldsAsync } from '../../wizards/utils';
 
 export interface MultiValueFieldProps<T, P> {
     maxCount: number;
@@ -94,10 +95,13 @@ const MultiValueField = <T, P>(componentProps: MultiValueFieldProps<T, P>) => {
                     Array.from(Array(currentCount).keys())
                     .map(index => ({ index: index, key: `${name}_${index}`, name: name }))
                     .map(({index, key}) => {
+                        const fieldProps = getFieldProps(key);
                         return (
                             <div key={key} className='multivalue-field-item w-100 p-2 d-flex flex-row justify-content-between align-items-start'>
                                 <div className='multivalue-field-item-container flex-grow-1'>
-                                    <Component {...props} {...getFieldProps(key)} value={values[key]}/>
+                                    <Component {...fieldProps} {...props} 
+                                        value={values[key]}
+                                        />
                                 </div>
                                 <div className='multivalue-field-item-icon p-1'>
                                     <CustomIconButton 

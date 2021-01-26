@@ -83,13 +83,34 @@
         "studyPlans": "Plany nauczania",
         "versions": "Wersje"
       }
+    },
+    "StudyPlan": {
+      "fields": {
+        "studyProgram": {
+          "name": "Program Studiów"
+        },
+        "deficits": {
+          "name": "Dopuszczalne deficyty",
+          "semester": "Numer semestru",
+          "allowed": "Dopuszczalny deficyt"
+        }
+      },
+      "wizards": {
+        "create": "Utwórz plan studiów",
+        "update": "Utwórz nową wersję planu studiów"
+      }
     }
   },
   "wizards": {
     "utils": {
       "min": "(min. {{minCount}})",
       "max": "(maks. {{maxCount}})",
-      "min-max": "(min. {{minCount}}, maks. {{maxCount}})"
+      "min-max": "(min. {{minCount}}, maks. {{maxCount}})",
+      "required": "Wymagane"
+    },
+    "buttons": {
+      "submit": "Utwórz",
+      "cancel": "Wróć"
     }
   }
 }
