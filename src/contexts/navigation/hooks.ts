@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 import { _INavigationContextActions, _INavigationContextState, _INavigationReducer } from "./types";
 import { _NavigationStateContext, _NavigationDispatchContext } from './context';

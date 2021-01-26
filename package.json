@@ -8,6 +8,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@material-ui/x-grid": "^4.0.0-alpha.17",
+    "@react-keycloak/web": "^3.4.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -60,6 +61,7 @@
   "devDependencies": {
     "babel-plugin-import": "^1.13.3",
     "customize-cra": "^1.0.0",
+    "dotenv": "^8.2.0",
     "react-app-rewired": "^2.1.8"
   }
 }

@@ -1,4 +1,3 @@
-import {  MenuItem } from "@material-ui/core";
 import { Autocomplete, AutocompleteProps } from '@material-ui/lab';
 import React from "react";
 import CustomTextField, { CustomTextFieldProps } from "../../../../components/forms/inputs/textField";

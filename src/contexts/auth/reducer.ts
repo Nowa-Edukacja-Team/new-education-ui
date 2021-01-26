@@ -3,9 +3,10 @@ import { _IAuthContextAction, _IAuthContextState, _UserData } from "./types"
 
 export const _initialAuthContextState: _IAuthContextState = {
     userData: {
-        firstName: 'Adam',
-        lastName: 'Nowak',
-        login: 'anowak'
+        firstName: 'Unknown',
+        lastName: 'Unknown',
+        login: 'unknown',
+        roles: []
     }
 };
 

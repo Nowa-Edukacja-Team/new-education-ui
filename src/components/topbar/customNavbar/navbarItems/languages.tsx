@@ -1,3 +1,5 @@
+import './styles.scss';
+
 import React, { Fragment } from 'react';
 
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -16,6 +18,7 @@ const LanguagesSelectorItem = () => {
 
     const buildLanguageOption = (language: Language) => (
         <CustomNavbarBase
+            className='lng-btn-option'
             key={language.code}
             label={getLanguageLabel(language, selectedLanguage.id === language.id)}
             iconUrl={language.flagUrl}
@@ -29,6 +32,7 @@ const LanguagesSelectorItem = () => {
         <Fragment>
             <NavDropdown.Divider />
             <CustomNavbarBase 
+                className='lng-btn-header'
                 label={translate('topbar.changeLanguage')} 
                 iconUrl={selectedLanguage.flagUrl} 
                 disabled 
