@@ -21,6 +21,7 @@ const DataGrid = () => {
                 loading={isPending}
                 error={isFailed ? error : undefined}
                 checkboxSelection
+                disableExtendRowFullWidth={false}
                 onSortModelChange={handleSortChange}
                 components={{
                     footer: FooterOverlay,

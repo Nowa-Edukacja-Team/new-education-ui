@@ -27,7 +27,7 @@ const TableDetails = (props: Props) => {
             </div>
             <div className='detail-tabs-current flex-grow-1'>
                 {
-                    currentTab.render(type, selectedRow)
+                    currentTab.render(type, (selectedRow as unknown) as number)
                 }
             </div>
         </div>

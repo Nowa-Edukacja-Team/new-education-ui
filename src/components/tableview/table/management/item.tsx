@@ -8,16 +8,18 @@ import useMutationObserver from "../../../../hooks/mutationObserver";
 import { Action } from "../../types";
 import { useGridSelectionState } from "./hooks";
 import { handleActionClick } from "./utils";
+import { useLocalization } from "../../../../contexts/localization";
 
 const MenuActionItem = (action: Action) => {
     const [helperText, setHelperText] = useState('');
+    const { translate } = useLocalization();
     const { type, selectedRows } = useGridSelectionState();
 
     const textRef = useMutationObserver<HTMLParagraphElement>({
         condition: (obj, document) => document.contains(obj),
         onMutation: (obj, _, document) => {
             if (obj.clientWidth < obj.scrollWidth) {
-                setHelperText(action.label);
+                setHelperText(translate(action.label));
             } else if (helperText.length > 0) {
                 setHelperText('');
             }
@@ -36,7 +38,7 @@ const MenuActionItem = (action: Action) => {
                     <Fragment>
                         <div className="item--container d-flex justify-content-start">
                             {action.icon}
-                            <p ref={textRef}>{action.label}</p>
+                            <p ref={textRef}>{translate(action.label)}</p>
                         </div>
                     </Fragment>
                 </NavDropdown.Item>

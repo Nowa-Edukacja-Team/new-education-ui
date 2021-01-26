@@ -1,10 +1,23 @@
 import { StudyProgramDTO, StudyProgramEntity } from "../studyProgram/types";
 
-export interface StudyPlanEntity {
-    id: number,
-    name: string,
-    multiValProperty: string[]
-};
+export interface StudyPlanTableEntity {
+    id: number;
+    fieldOfStudy: string;
+    faculty: string;
+    language: string;
+    isActive: boolean;
+    mode: string;
+    level: string;
+    learningCycle: string;
+}
+
+export interface StudyPlanVersionTableEntity {
+    id: number;
+    version: number;
+    createdDate: Date;
+    updatedDate: Date;
+    isActive: boolean;
+}
 
 export interface StudyPlanDTO {
     studyProgram: StudyProgramDTO;
@@ -21,7 +34,7 @@ export interface StudyPlanEntity {
     id: number;
     version: number;
     createdDate: Date;
-    uploadedDate?: Date;
+    updatedDate?: Date;
     validFromDate?: Date;
     deficits: DeficitEntity[];
     studyProgram: StudyProgramEntity;

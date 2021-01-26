@@ -57,3 +57,13 @@ export interface WizardFormConfiguration<T> {
 };
 
 export type WizardConfiguration<T> = CommonWizardConfiguration & WizardFormConfiguration<T>;
+
+export interface UpdateWizardConfiguration<T> {
+    config: (id: number) => WizardConfiguration<T>;
+    type: string;
+}
+
+export interface DetailPageProps {
+    type: string;
+    id: number;
+}

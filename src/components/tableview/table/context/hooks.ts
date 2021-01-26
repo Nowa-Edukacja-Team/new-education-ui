@@ -5,6 +5,7 @@ import { handleColumns, handleSorting } from "./utils";
 import { GridContext, GridDispatcherContext } from "./context";
 import { handleData } from "./utils";
 import { Grid } from "./types";
+import { useLocalization } from "../../../../contexts/localization";
 
 export interface GridConfiguration<T> {
     type: string;
@@ -30,13 +31,14 @@ const useGridReducer = () => {
 export const useGrid = <T>() => {
     const [ config, setConfig ] = useState<GridConfiguration<T>>();
     const { state, actions } = useGridReducer();
+    const { translate } = useLocalization();
     const { pageData, columns, isPending, isFailed, error, showDetails, selectedRows, request, type } = state;
     const { setSorting, setPage, setColumns, setSearchText, fetchData, onFetchDataSuccess, onFetchDataError, setSelectedRows, setType } = actions;
 
     useEffect(() => {
         if(config) {
             setType(config.type);
-            setColumns(handleColumns(config.columns));
+            setColumns(handleColumns(config.columns, translate));
         }
     }, [config, setColumns, setType])
 

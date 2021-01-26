@@ -52,24 +52,27 @@ export const handleData = <T>(page: Page<T>) => {
 }
 
 // Column mapping
-const translateColumn = <T>(column: Column<T>) => {
-    const result: ColDef = { field: column.name, headerName: column.label, sortable: column.sortable };
+const translateColumn = <T>(column: Column<T>, translateFunc: (text: string) => string) => {
+    const result: ColDef = { field: column.name, headerName: translateFunc(column.label), sortable: column.sortable };
     switch(column.type) {
         case ColumnTypes.TEXT:
             return {
                 ...result,
-                type: 'string'
+                type: 'string',
+                width: 200
             } as ColDef;
         case ColumnTypes.NUMBER:
             return {
                 ...result,
                 type: 'number',
+                width: 200,
                 valueFormatter: (params) => column.precision && params.value ? Number(params.value).toFixed(column.precision) : params.value
             } as ColDef;
         case ColumnTypes.DATE:
             return {
                 ...result,
                 type: 'date',
+                width: 200,
                 valueFormatter: (params) => {
                     if(!column.format || !params.value) {
                         return params.value;
@@ -86,8 +89,9 @@ const translateColumn = <T>(column: Column<T>) => {
             return {
                 ...result,
                 type: 'dateTime',
+                width: 200,
                 valueFormatter: (params) => {
-                    if(!column.format || !params.value) {
+                    if(column.format === undefined || params.value === undefined) {
                         return params.value;
                     }
                     const value = params.value;
@@ -101,8 +105,9 @@ const translateColumn = <T>(column: Column<T>) => {
         case ColumnTypes.CUSTOM:
             return {
                 ...result,
+                width: 100,
                 renderCell: (params) => {
-                    if(!params.rowIndex) {
+                    if(params.rowIndex === undefined) {
                         return params.value;
                     }
                     // should have correct props here
@@ -114,8 +119,9 @@ const translateColumn = <T>(column: Column<T>) => {
             return {
                 ...result,
                 type: 'string',
+                width: 200,
                 valueFormatter: (params) => {
-                    if(!params.value)
+                    if(params.value === undefined)
                         return params.value;
                     return JSON.stringify(params.value);
                 }
@@ -123,6 +129,6 @@ const translateColumn = <T>(column: Column<T>) => {
     }
 }
 
-export const handleColumns = <T>(columns: Column<T>[]) => {
-    return columns.map(translateColumn);
+export const handleColumns = <T>(columns: Column<T>[], translateFunc: (text: string) => string) => {
+    return columns.map(col => translateColumn(col , translateFunc));
 }

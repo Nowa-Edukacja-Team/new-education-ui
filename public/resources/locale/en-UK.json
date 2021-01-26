@@ -86,7 +86,26 @@
       }
     },
     "StudyPlan": {
+      "name": "Study plan",
+      "name-plural": "Study plans",
+      "actions": {
+        "create": "Create new study plan",
+        "createVersion": "Create new version",
+        "showVersions": "Open version view"
+      },
       "fields": {
+        "id": "ID",
+        "fieldOfStudy": "Field of Study",
+        "faculty": "Faculty",
+        "language": "Language",
+        "status": {
+          "name": "Status",
+          "inactive": "Inactive",
+          "active": "Current"
+        },
+        "mode": "Mode",
+        "level": "Level",
+        "learningCycle": "Learning Cycle",
         "studyProgram": {
           "name": "Study Plan",
           "validations": {
@@ -99,10 +118,35 @@
           "allowed": "Allowed deficit"
         }
       },
+      "details": {
+        "main": {
+          "fieldOfStudyInfo": "Field of Study Information",
+          "allowedDeficits": "Allowed deficit after semester",
+          "semester": "Semester"
+        },
+        "versions": {
+          "name": "Versions"
+        }
+      },
       "wizards": {
         "create": "Create Study Plan",
         "update": "Create new Study Plan version"
       }
+    },
+    "FieldOfStudy": {
+      "name": "Name"
+    },
+    "Faculty": {
+      "name": "Faculty"
+    },
+    "Language": {
+      "name": "Language"
+    },
+    "Mode": {
+      "name": "Mode"
+    },
+    "Profile": {
+      "name": "Profile"
     }
   },
   "wizards": {

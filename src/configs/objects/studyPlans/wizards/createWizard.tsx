@@ -1,6 +1,5 @@
 import DeficitsField, { DeficitsFieldProps } from '../../../../components/forms/inputs/deficits';
 import SearchBox, { SearchBoxProps } from '../../../../components/forms/inputs/searchBox';
-import CustomTextField, { CustomTextFieldProps } from "../../../../components/forms/inputs/textField";
 import { WizardConfiguration, FieldType, FieldDefinition } from "../../../../components/forms/wizards/types";
 import { StudyPlanEntity } from "../types";
 

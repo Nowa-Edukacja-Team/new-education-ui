@@ -1,8 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { withWizardConfigurationContext } from '../../../contexts/wizardView/context';
-import { useWizardConfiguration } from '../../../contexts/wizardView/hooks';
-import { WizardType } from '../../../contexts/wizardView/types';
+import { useCreateWizardConfiguration } from '../../../contexts/wizardView/hooks';
 import { WizardConfiguration } from './types';
 import Wizard from './wizard';
 
@@ -20,7 +19,7 @@ const WizardViewInner = (props: Props<any>) => {
 
 const CreateWizardView = (props: any) => {
     const { objectType } = useParams<{objectType: string}>();
-    const configuration = useWizardConfiguration(WizardType.CREATE, objectType);
+    const configuration = useCreateWizardConfiguration(objectType);
 
     if(!configuration) {
         return (<div>No configuration for: {objectType} :(</div>);

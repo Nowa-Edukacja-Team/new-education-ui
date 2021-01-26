@@ -85,7 +85,26 @@
       }
     },
     "StudyPlan": {
+      "name": "Plan studiów",
+      "name-plural": "Plany studiów",
+      "actions": {
+        "create": "Utwórz nowy plan studiów",
+        "createVersion": "Utwórz nową wersję",
+        "showVersions": "Otwórz widok wersji"
+      },
       "fields": {
+        "id": "ID",
+        "fieldOfStudy": "Kierunek",
+        "faculty": "Wydział",
+        "language": "Język",
+        "status": {
+          "name": "Status",
+          "inactive": "Nieaktywny",
+          "active": "Aktualny"
+        },
+        "mode": "Tryb",
+        "level": "Stopień",
+        "learningCycle": "Cykl kształcenia",
         "studyProgram": {
           "name": "Program Studiów"
         },
@@ -95,10 +114,35 @@
           "allowed": "Dopuszczalny deficyt"
         }
       },
+      "details": {
+        "main": {
+          "fieldOfStudyInfo": "Informacje o kierunku",
+          "allowedDeficits": "Dopuszczalny deficyt po semestrze",
+          "semester": "Semestr"
+        },
+        "versions": {
+          "name": "Wersje"
+        }
+      },
       "wizards": {
         "create": "Utwórz plan studiów",
         "update": "Utwórz nową wersję planu studiów"
       }
+    },
+    "FieldOfStudy": {
+      "name": "Nazwa"
+    },
+    "Faculty": {
+      "name": "Wydział"
+    },
+    "Language": {
+      "name": "Język"
+    },
+    "Mode": {
+      "name": "Tryb"
+    },
+    "Profile": {
+      "name": "Profil"
     }
   },
   "wizards": {

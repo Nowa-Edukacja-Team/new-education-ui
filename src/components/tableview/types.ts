@@ -87,7 +87,7 @@ interface CustomColumn<T> extends BaseColumn {
 export type Column<T> = TextColumn | NumberColumn | DateColumn | CustomColumn<T> | DateTimeColumn;
 
 // Details Pages
-export type DetailTabFunc = (type: string, id: number | string) => JSX.Element;
+export type DetailTabFunc = (type: string, id: number) => JSX.Element;
 
 // Custom Detail Page
 export interface CustomDetailPage {

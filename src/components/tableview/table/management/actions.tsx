@@ -20,6 +20,7 @@ interface TableManagementActionsProps {
 
 const TableManagementUnwrappedActions = (props: TableManagementActionsProps) => {
     const { actions } = props;
+    const { translate } = useLocalization();
     const { type, selectedRows } = useGridSelectionState();
 
     const handleClick = (event: React.MouseEvent, action: Action) => {
@@ -32,7 +33,7 @@ const TableManagementUnwrappedActions = (props: TableManagementActionsProps) => 
             {actions.map((action, index) => (
                 <div className="action" key={index}>
                     <CustomButton
-                        text={action.label}
+                        text={translate(action.label)}
                         icon={action.icon}
                         iconPosition={IconPosition.LEFT}
                         onClick={(e) => handleClick(e, action)}
