@@ -16,7 +16,7 @@ interface MultiValueFormFieldProps<T> {
 
 const MultiValueFormField = <T, >(formFieldProps: MultiValueFormFieldProps<T>) => {
     const { definition, fieldProps, onValueUpdate } = formFieldProps;
-    const { label, Component, props, initialCount, maxCount } = definition;
+    const { label, Component, props, initialCount, maxCount, minCount, validate } = definition;
     const allProps = {label, ...props};
 
     return (
@@ -24,11 +24,13 @@ const MultiValueFormField = <T, >(formFieldProps: MultiValueFormFieldProps<T>) =
         <MultiValueField 
                 {...fieldProps}
                 props={allProps}
+                minCount={minCount}
                 maxCount={maxCount}
                 initialCount={initialCount} 
                 Component={Component}
                 label={label}
                 onValueChange={onValueUpdate}
+                validateSingle={validate}
             />
         </div>
     )
@@ -80,14 +82,18 @@ const FormRow = <T, >(props: FormRowProps<T>) => {
     const { field, fieldPropsFunc, onValueUpdate } = props;
 
     return (
-        <div className='row w-100 p-3'>
+        <div className='field--container row w-100 pt-2 pl-3 pr-3'>
             <Field type="hidden" name={field.name} />
             <FormField 
                 definition={field} 
                 fieldPropsFunc={fieldPropsFunc}
                 onValueUpdate={onValueUpdate}
             />
-            <ErrorMessage name={field.name} />
+            <ErrorMessage name={field.name}>
+                { (text) => (
+                    <span className='error--message row w-100'>{text}</span>
+                )}
+            </ErrorMessage>
         </div>
     )
 }

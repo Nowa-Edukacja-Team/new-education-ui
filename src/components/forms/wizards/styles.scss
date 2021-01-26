@@ -74,3 +74,17 @@
         width: 100% !important;
     }
 }
+
+.field--container {
+    display: flex;
+    justify-content: center;
+    & > .error--message {
+        border: 1px solid $error;
+        border-radius: 3px;
+        background-color: $errorLight;
+        // font-weight: bolder;
+        margin: 5px;
+        padding: 8px;
+        color: $error;
+    }
+}

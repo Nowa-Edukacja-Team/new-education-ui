@@ -5,5 +5,14 @@
         vertical-align: middle;
         display: table-cell;
         max-height: min-content;
+        display: flex;
+
+        & > .multivalue-field-sub {
+            font-size: 0.8rem;
+            display: table-cell;
+            height: 100%;
+            vertical-align: bottom;
+            margin-left: 8px;
+        }
     }
 }

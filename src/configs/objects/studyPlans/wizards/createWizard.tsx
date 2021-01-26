@@ -1,5 +1,6 @@
 import { Autocomplete, AutocompleteProps } from '@material-ui/lab';
 import React from "react";
+import SearchBox, { SearchBoxProps } from '../../../../components/forms/inputs/searchBox';
 import CustomTextField, { CustomTextFieldProps } from "../../../../components/forms/inputs/textField";
 import { WizardConfiguration, FieldType, FieldDefinition } from "../../../../components/forms/wizards/types";
 import { StudyPlanEntity } from "../types";
@@ -22,28 +23,23 @@ const StudyPlanCreateWizardConfiguration = {
                 if(name === 'testError')
                     return 'WRONG VALUE'
             },
-            Component: Autocomplete,
+            Component: SearchBox,
             props: {
-                variant: 'outlined',
-                label: 'Test',
-                type: "search",
-                renderOption: (params) => (
-                    <p>{params}</p>
-                ),
-                renderInput: (params) => (
-                    <CustomTextField {...params} />
-                ),
-                options: ["10", "11", "testError"]
+                fetchOptions: async (text: string) => {
+                    return ["1", "2", "testError", "test3"].filter(val => val.includes(text))
+                },
+                getOptionLabel: (text: string) => text
             }
-        } as FieldDefinition<string, AutocompleteProps<string, false, true, false>>,
+        } as FieldDefinition<string, SearchBoxProps<string>>,
         {
             name: 'multiValProperty',
             label: 'Multi value field',
             type: FieldType.MULTI,
+            minCount: 2,
             maxCount: 5,
             initialCount: 2,
             validate: (name: string) => {
-
+                console.log("VAL: ", name);
             },
             Component: CustomTextField,
             props: {

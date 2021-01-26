@@ -85,5 +85,12 @@
         "versions": "Versions"
       }
     }
+  },
+  "wizards": {
+    "utils": {
+      "min": "(min. {{minCount}})",
+      "max": "(max. {{maxCount}})",
+      "min-max": "(min. {{minCount}}, max. {{maxCount}})"
+    }
   }
 }
