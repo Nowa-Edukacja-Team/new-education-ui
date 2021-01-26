@@ -1,17 +1,8 @@
 import { LANGUAGE_CHANGED_ACTION } from "./actions";
 import { availableLanguages, getLanguageById, Languages } from "./languages";
 import { _ILanguageContextState, _LanguageContextAction } from "./types";
+import { DEFAULT_LANGUAGE, LOCAL_STORAGE_LANGUAGE } from "./utils";
 
-const LOCAL_STORAGE_LANGUAGE = 'lang';
-
-const loadDefaultLanguage = () => {
-    const storedLangAsString = localStorage.getItem(LOCAL_STORAGE_LANGUAGE);
-    const storedLangCode = storedLangAsString ? storedLangAsString as keyof typeof Languages : null;
-    const storedLang = storedLangCode ? Languages[storedLangCode] : null;
-    return storedLang || Languages.POLISH;
-}
-
-const DEFAULT_LANGUAGE = getLanguageById(loadDefaultLanguage());
 
 export const _initialLanguageContextState: _ILanguageContextState = {
     selectedLanguage: DEFAULT_LANGUAGE,

@@ -1,0 +1,11 @@
+.lng-btn-header {
+    cursor: default !important;
+
+    & > .lng-btn-option {
+        cursor: pointer;
+    }
+}
+
+.redirect-link {
+    text-decoration: none !important;
+}

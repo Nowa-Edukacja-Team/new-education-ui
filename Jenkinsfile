@@ -2,8 +2,8 @@ pipeline {
   agent any
 
   environment {
-      registry = "neweducation/new-education-ui"
-      version = "v0.0.$BUILD_NUMBER"
+      PACKAGE = "neweducation/new-education-ui"
+      TAG = "v0.0.$BUILD_NUMBER"
       registryCredential = "dockerhub"
       dockerImage = ''
   }
@@ -12,7 +12,7 @@ pipeline {
     stage('Create Image') {
       steps {
         script {
-            dockerImage = docker.build registry + ":" + version
+            dockerImage = docker.build PACKAGE + ":" + TAG
         }
       }
     }
@@ -27,7 +27,7 @@ pipeline {
     }
     stage('Remove created Image') {
       steps {
-        sh "docker rmi $registry:$version"
+        sh "docker rmi $PACKAGE:$TAG"
       }
     }
     stage('Create namespace if not present') {
@@ -40,7 +40,7 @@ pipeline {
     stage('Deploy to cluster') {
       steps {
         withKubeConfig([credentialsId: 'kubeconfig']) {
-          sh 'cat ./kubernetes/deployment.yml | sed "s#{{PACKAGE_VERSION}}#$version#g" | sed "s#{{PACKAGE_NAME}}#$registry#g" | kubectl apply -n ui -f -'
+          sh 'cat ./kubernetes/deployment.yml | sed "s#{{PACKAGE_VERSION}}#$TAG#g" | sed "s#{{PACKAGE_NAME}}#$PACKAGE#g" | kubectl apply -n ui -f -'
           sh 'kubectl apply -n ui -f ./kubernetes/service.yml'
         }
       }

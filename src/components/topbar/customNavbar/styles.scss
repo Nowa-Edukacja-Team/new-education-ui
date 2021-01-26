@@ -24,6 +24,8 @@
 }
 
 .dropDown {
+    cursor: default !important;
+    
     & > .dropdown-menu {
         min-width: 350px;
     }

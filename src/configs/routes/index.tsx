@@ -26,7 +26,6 @@ export const CreateWizardView = {
     lazy: true,
     component: (props: any) => <LazyCreateWizardView {...props} />
 }
-
 // export const UnknownRoute = {
 //     path: '/',
 //     component: (props: any) => <Redirect to={ErrorPageRoute.path.replace(':error', 'notFound')} />
@@ -36,7 +35,7 @@ const routes: Route[] = [
     ErrorPageRoute,
     TableView,
     CreateWizardView,
-    MainPageRoute,
+    MainPageRoute
     // UnknownRoute
 ]
 

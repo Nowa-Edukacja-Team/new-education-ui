@@ -1,4 +1,4 @@
-import { AuthProvider } from "./context";
+import AuthProvider from "./context";
 import { useUserData } from "./hooks";
 import { _UserData } from "./types";
 

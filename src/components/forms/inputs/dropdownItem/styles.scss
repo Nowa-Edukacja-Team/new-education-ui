@@ -1,3 +1,5 @@
+@import '../../../../variables';
+
 .item--container {
     display: flex;
     justify-content: space-between;
@@ -11,4 +13,20 @@
 .hint {
     font-size: 0.7rem;
     color: lightgray;
+}
+
+.nav-button {
+    cursor: pointer;
+
+    &.disabled {
+        cursor: default;
+    }
+
+    &:hover {
+        background-color: $secondary;
+    }
+
+    &.disabled:hover {
+        background-color: transparent;
+    }
 }
