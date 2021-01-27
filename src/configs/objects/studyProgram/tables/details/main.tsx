@@ -44,7 +44,7 @@ const StudyProgramMainDetailsPage = (props: DetailPageProps) => {
                 <p className='section-label'>{translate('objects.StudyProgram.details.main.examRanges')}</p>
                 <div className='section-content'>
                     {
-                        examRanges.map(({ number, text }) => (
+                        examRanges.map((text, number) => (
                             <div className='section-content-entry'>
                                 <div className='label'>{number}</div>
                                 <div className='value'>{text}</div>
@@ -57,10 +57,11 @@ const StudyProgramMainDetailsPage = (props: DetailPageProps) => {
                 <p className='section-label'>{translate('objects.StudyProgram.details.main.modules')}</p>
                 <div className='section-content'>
                     {
-                        modules.map(({ name }, id) => (
+                        modules.map(({ name, ects }, id) => (
                             <div className='section-content-entry'>
                                 <div className='label'>{id + 1}</div>
                                 <div className='value'>{name}</div>
+                                <div className='value'>{ects} ECTS</div>
                             </div>
                         ))
                     }

@@ -67,10 +67,14 @@ const SubjectCardMainDetailsPage = (props: DetailPageProps) => {
                         <div className='label'>{translate('objects.SubjectCard.fields.creditingForm')}</div>
                         <div className='value'>{creditingForm.name}</div>
                     </div>
-                    <div className='section-content-entry'>
-                        <div className='label'>{translate('objects.SubjectCard.fields.block')}</div>
-                        <div className='value'>{module.blocks.name}</div>
-                    </div>
+                    {
+                        module.blocks && (
+                            <div className='section-content-entry'>
+                                <div className='label'>{translate('objects.SubjectCard.fields.block')}</div>
+                                <div className='value'>{module.blocks.name}</div>
+                            </div>
+                        )
+                    }
                     <div className='section-content-entry'>
                         <div className='label'>{translate('objects.SubjectCard.fields.module')}</div>
                         <div className='value'>{module.name}</div>

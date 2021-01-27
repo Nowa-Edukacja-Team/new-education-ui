@@ -15,7 +15,8 @@ export interface MultiValueFieldProps<T, P> {
     props?: P;
     onValueChange: (value: T) => void;
     onValidStateChange: (isValid: boolean) => void;
-    validateSingle: (value: T) => string | void | undefined;
+    validateSingle: (value: T) => string[] | void | undefined;
+    validateComplete?: (value: T[]) => string[] | void | undefined;
     value: T;
     name: string;
     label: string;
@@ -24,13 +25,14 @@ export interface MultiValueFieldProps<T, P> {
 const parseInitialValues = <T, >(name: string, values: T) => {
     if(!values)
         return {};
+    console.log('ssssssssssssss', values);
     const vals = ((values as unknown) as any[]);
     return vals.map((val, i) => ({[`${name}_${i}`]: val}))
             .reduce((a, b) => ({...a, ...b}), {})
 }
 
 const MultiValueField = <T, P>(componentProps: MultiValueFieldProps<T, P>) => {
-    const { maxCount, Component, props, initialCount, minCount, onValueChange, validateSingle, onValidStateChange, ...rest } = componentProps;
+    const { maxCount, Component, props, initialCount, minCount, onValueChange, validateSingle, validateComplete, onValidStateChange, ...rest } = componentProps;
     const { value, name, label } = rest;
     const { translate } = useLocalization();
     const [ currentCount, setCurrentCount ] = useState(initialCount || 1);
@@ -64,11 +66,14 @@ const MultiValueField = <T, P>(componentProps: MultiValueFieldProps<T, P>) => {
     const { values, getFieldProps } = formik;
 
     useEffect(() => {
-        const vals = (Object.values(values) as unknown) as T;
+        const vals = (Object.values(values) as unknown) as T[];
         if(JSON.stringify(vals) !== JSON.stringify(value)) {
-            onValueChange(vals);
+            if(validateComplete) {
+                console.log(validateComplete(vals));
+            }
+            onValueChange((vals as unknown) as T);
         }
-    }, [onValueChange, values, value, formik, formik.isValid, formik.errors]);
+    }, [onValueChange, values, value, formik, formik.isValid, formik.errors, validateComplete]);
 
 
     useEffect(() => {
@@ -122,12 +127,18 @@ const MultiValueField = <T, P>(componentProps: MultiValueFieldProps<T, P>) => {
                                         if(errors === undefined) {
                                             formik.setFieldError(key, undefined);
                                         } else if((errors as any) instanceof Object) {
-                                            formik.setFieldError(key, errors);
+                                            formik.setFieldError(key, errors.join(','));
                                         }
                                         fieldProps.onChange(val);
                                     }} value={values[key]}/>
                                     <Field name={key} type='hidden' />
-                                    { formik.errors[key] && formik.errors[key] !== undefined && <span className='error--message row w-100'>{translate(`${formik.errors[key]}`)}</span>}
+                                    { formik.errors[key] !== undefined && 
+                                        (
+                                            (((formik.errors[key] as string[])[0] as unknown) as string[]).map((error, index) => (
+                                                <div key={index} className='error--message row w-100'>{translate(`${error}`)}</div>
+                                            ))
+                                        )
+                                    }
                                 </div>
                                 <div className='multivalue-field-item-icon p-1'>
                                     <CustomIconButton 

@@ -1,16 +1,18 @@
 import './styles.scss';
 
 import { TextField, InputLabelProps, TextFieldProps, InputProps, FilledInputProps, OutlinedInputProps } from '@material-ui/core';
+import { useLocalization } from '../../../../contexts/localization';
 
 type OwnInputProps = Partial<InputProps> | Partial<FilledInputProps> | Partial<OutlinedInputProps>;
 type OwnInputLabelProps = Partial<InputLabelProps>;
 
 type MergableProps = OwnInputProps | OwnInputLabelProps;
 
-export type CustomTextFieldProps = Omit<TextFieldProps, 'variant'>;
+export type CustomTextFieldProps = Omit<TextFieldProps, 'variant'> & { translatableLabel?: string };
 
 const CustomTextField = (props: CustomTextFieldProps) => {
-    const { label, InputProps, InputLabelProps, ...rest } = props;
+    const { label, InputProps, InputLabelProps, translatableLabel, ...rest } = props;
+    const { translate } = useLocalization();
 
     const mergeProps = <T extends MergableProps>(original: T, custom: T) => {
         return {
@@ -42,7 +44,7 @@ const CustomTextField = (props: CustomTextFieldProps) => {
 
     return (
         <TextField
-                label={label}
+                label={translatableLabel ? translate(translatableLabel) : label}
                 variant='outlined'
                 InputProps={inputProps}
                 InputLabelProps={labelInputProps}

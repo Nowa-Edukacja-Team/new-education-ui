@@ -6,6 +6,10 @@ export interface StudyProgramDTO {
 
 }
 
+export interface ModuleDTO {
+
+}
+
 export interface StudyProgramTableEntity {
     id: number;
     fieldOfStudy: string;
@@ -24,11 +28,11 @@ export interface StudyProgramEntity {
     createdDate: Date;
     updatedDate?: Date;
     valid?: Date;
-    examRanges: ExamRangeEntity[];
+    examRanges: string[];
     studyPlan?: StudyPlanEntity[];
     learningEffects: LearningEffectEntity[];
     fieldOfStudy: FieldOfStudyEntity;
-    modules: ModuleEntity[];
+    modules: StudyProgramModuleEntity[];
     isCurrent: boolean;
     subjectCards: SubjectCardEntity[];
 }
@@ -94,13 +98,14 @@ export interface SpecializationEntity {
 
 export interface StudyProgramModuleEntity {
     moduleId: number;
+    name: string;
     ects: number;
 }
 
 export interface ModuleEntity {
     id: number;
     name: string;
-    blocks: BlockEntity;
+    blocks?: BlockEntity;
 }
 
 export interface BlockEntity {

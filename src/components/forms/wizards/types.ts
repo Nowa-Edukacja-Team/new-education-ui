@@ -23,7 +23,7 @@ interface BaseFieldDefinition<O, T, P extends FieldProps> {
     required?: boolean;
     errored?: boolean;
     Component: React.ComponentType<P | {}>;
-    validate: (value: T) => void | string | undefined;
+    validate: (value: T) => void | string[] | undefined;
     props?: P;
     maxCount?: number;
     initialCount?: number;
@@ -38,7 +38,7 @@ export interface MultiFieldDefinition<O, T, P extends FieldProps> extends BaseFi
     minCount?: number;
     maxCount: number;
     validateComplete?: (value: T[]) => void | string | undefined;
-    validateSingle?: (value: T[]) => void | string | undefined;
+    validateSingle?: (value: T) => void | string | undefined;
     initialCount?: number;
 }
 

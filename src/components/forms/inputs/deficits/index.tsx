@@ -21,12 +21,12 @@ const DeficitsField = (props: CompleteProps) => {
             case 'semester':
                 return {
                     ...current,
-                    semester: (e.target.value as unknown) as number
+                    semester: e.target.value ? Number(e.target.value) : undefined
                 } as DeficitDTO;
             case 'deficit':
                 return {
                     ...current,
-                    limit: (e.target.value as unknown) as number
+                    limit: e.target.value ? Number(e.target.value) : undefined
                 } as DeficitDTO;
         }
     }

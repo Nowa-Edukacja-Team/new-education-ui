@@ -1,17 +1,21 @@
 import './styles.scss';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { XGrid } from '@material-ui/x-grid';
 import { useGrid } from '../context/hooks';
 import { LoadingOverlay, FooterOverlay, NoRowsOverlay, ErrorOverlay } from './overlays';
 
-const DataGrid = () => {
+const DataGrid = ({type} : { type: string }) => {
     const { columns, pageData, status, handleSortChange, setSelectedRows } = useGrid();
     const { isPending, isFailed, error } = status;
     const { rows } = pageData;
 
     console.log(isFailed);
+
+    useEffect(() => {
+        setSelectedRows([]);
+    }, [setSelectedRows, type])
 
     return (
         <div className='data-grid'>
@@ -35,10 +39,10 @@ const DataGrid = () => {
     )
 }
 
-const TableData = () => {
+const TableData = ({ type }: { type: string}) => {
     return (
         <div className='table-data-container'>
-            <DataGrid />
+            <DataGrid type={type} />
         </div>
     )
 };

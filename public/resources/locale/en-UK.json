@@ -127,6 +127,10 @@
         "createVersion": "Create new version",
         "showVersions": "Open version view"
       },
+      "wizards": {
+        "create": "Create new study program",
+        "update": "Create new study program version"
+      },
       "fields": {
         "id": "ID",
         "fieldOfStudy": "Field of Study",
@@ -139,7 +143,16 @@
         },
         "mode": "Mode",
         "level": "Level",
-        "learningCycle": "Learning Cycle"
+        "learningCycle": "Learning Cycle",
+        "examRanges": {
+          "name": "Exam ranges",
+          "single": "Exam Range"
+        },
+        "modules": {
+          "name": "Modules",
+          "single": "Module",
+          "ects": "ECTS limit"
+        }
       },
       "tabs": {
         "studyPlans": "Study Plans",

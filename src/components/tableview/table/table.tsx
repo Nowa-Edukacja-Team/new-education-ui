@@ -37,7 +37,7 @@ const DataTable = <T, >(props: Props<T>) => {
         <div className='col d-flex flex-column h-100 w-100'>
             { !isEmbedded && <div className='row title' children={<TableTitle {...{title}} />} /> }
             <div className='row table-management' children={<TableManagement {...{ filters, actions }} />} />
-            <div className='row table-data flex-grow-1' children={<TableData />} />
+            <div className='row table-data flex-grow-1' children={<TableData type={type} />} />
             {
                 !isEmbedded && (
                     <div className={`row table-details flex-grow-1 ${selectedRows.length === 1 ? 'visible' : 'hidden'}`}>

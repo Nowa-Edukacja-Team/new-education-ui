@@ -43,16 +43,36 @@ const StudyPlanCreateWizardConfiguration = {
             maxCount: 7,
             initialCount: 3,
             required: true,
+            validateComplete: (deficit: DeficitEntity[]) => {
+                const errors = [] as string[];
+                const found = [] as number[];
+                deficit.forEach(deficit => {
+                    if(found.includes(deficit.semester)) {
+                        errors.push('objects.StudyPlan.fields.studyProgram.validations.deficits.duplicateSemester');
+                        return;
+                    }
+                    found.push(deficit.semester);
+                })
+                
+                if(errors.length > 0)
+                    return errors;
+            },
             validate: (deficit: DeficitEntity) => {
-                if(deficit.limit === undefined || deficit.semester === undefined || deficit.limit === null || deficit.semester === null ) {
-                    return 'objects.StudyPlan.fields.studyProgram.validations.empty';
+                const { limit, semester } = deficit;
+                const result = [];
+                if(limit === undefined || limit === null) {
+                    result.push('objects.StudyPlan.fields.studyProgram.validations.deficits.limit.empty')
+                } else if(limit < 0 || limit > 30) {
+                    result.push('objects.StudyPlan.fields.studyProgram.validations.deficits.limit.incorrect')
                 }
-                if(deficit.semester <= 0 || deficit.semester > 7) {
-                    return 'objects.StudyPlan.fields.studyProgram.validations.deficits.incorrectSemester';
+                if(semester === undefined || semester === null) {
+                    result.push('objects.StudyPlan.fields.studyProgram.validations.deficits.semester.empty')
+                } else if(semester < 0 || semester > 30) {
+                    result.push('objects.StudyPlan.fields.studyProgram.validations.deficits.semester.incorrect')
                 }
-                if(deficit.limit < 0 || deficit.limit > 30) {
-                    return 'objects.StudyPlan.fields.studyProgram.validations.deficits.incorrectLimit';
-                }
+                
+                if(result.length > 0)
+                    return result;
             },
             validateSingle: (val) => {
 

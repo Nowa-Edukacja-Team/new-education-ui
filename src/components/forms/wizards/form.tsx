@@ -12,12 +12,13 @@ interface MultiValueFormFieldProps<O, T> {
     definition: MultiFieldDefinition<O, T, FieldProps>;
     onValueUpdate: (value: T) => void;
     onValidStateChange: (isValid: boolean) => void;
+    onValidateComplete: (value: T[]) => string[] | void | undefined;
     fieldProps: FieldInputProps<T>;
 }
 
 
 const MultiValueFormField = <O, T>(formFieldProps: MultiValueFormFieldProps<O, T>) => {
-    const { definition, fieldProps, onValueUpdate, onValidStateChange } = formFieldProps;
+    const { definition, fieldProps, onValueUpdate, onValidStateChange, onValidateComplete } = formFieldProps;
     const { label, Component, props, initialCount, maxCount, minCount, validate } = definition;
     const allProps = {label, ...props};
 
@@ -33,6 +34,7 @@ const MultiValueFormField = <O, T>(formFieldProps: MultiValueFormFieldProps<O, T
                 label={label}
                 onValueChange={onValueUpdate}
                 validateSingle={validate}
+                validateComplete={onValidateComplete}
                 onValidStateChange={onValidStateChange}
             />
         </div>
@@ -44,11 +46,12 @@ interface FormFieldProps<O, T> {
     fieldPropsFunc: (nameOrOptions: any) => FieldInputProps<T>;
     onValueUpdate: (value: T, isValid: boolean) => void;
     onValidStateChange: (isValid: boolean) => void;
+    onValidateComplete: (value: T[]) => string | void | undefined;
     currentValue: O;
 }
 
 const FormField = <O, T>(formFieldProps: FormFieldProps<O, T>) => {
-    const { definition, fieldPropsFunc, onValueUpdate, onValidStateChange, currentValue } = formFieldProps;
+    const { definition, fieldPropsFunc, onValueUpdate, onValidStateChange, onValidateComplete, currentValue } = formFieldProps;
     const { label, Component, props, name } = definition;
 
     const [ fieldProps, setFieldProps ] = useState<FieldInputProps<T>>();
@@ -80,6 +83,7 @@ const FormField = <O, T>(formFieldProps: FormFieldProps<O, T>) => {
                         fieldProps={fieldProps}
                         onValueUpdate={onValueUpdate}
                         onValidStateChange={onValidStateChange}
+                        onValidateComplete={onValidateComplete}
                         {...restProps}
                     />
                 ) : (
@@ -95,12 +99,13 @@ interface FormRowProps<O, T> {
     fieldPropsFunc: (nameOrOptions: any) => FieldInputProps<T>;
     onValueUpdate: (value: T, isValid: boolean) => void;
     onValidStateChange: (isValid: boolean) => void;
+    onValidateComplete: (value: T[]) => string | void | undefined;
     errors?: string;
     currentValue: O;
 }
 
 const FormRow = <O, T>(props: FormRowProps<O, T>) => {
-    const { field, fieldPropsFunc, onValueUpdate, onValidStateChange, errors, currentValue } = props;
+    const { field, fieldPropsFunc, onValueUpdate, onValidStateChange, onValidateComplete, errors, currentValue } = props;
     const { translate } = useLocalization();
 
     return (
@@ -112,6 +117,7 @@ const FormRow = <O, T>(props: FormRowProps<O, T>) => {
                 onValueUpdate={onValueUpdate}
                 currentValue={currentValue}
                 onValidStateChange={onValidStateChange}
+                onValidateComplete={onValidateComplete}
             />
             { errors && errors !== 'multiInvalid' && <span className='error--message row w-100'>{translate(errors)}</span>}
         </div>
@@ -144,6 +150,15 @@ const Form = <T, >(props: CompleteFormProps<T>) => {
                                         const errs = formik.errors as any;
                                         if(errs[field.name] !== 'multiInvalid' && !isValid) {
                                             formik.setFieldError(field.name, 'multiInvalid');
+                                        }
+                                    }}
+                                    onValidateComplete={(e) => {
+                                        if(field.type === FieldType.MULTI && field.validateComplete) {
+                                            const errors = field.validateComplete(e);
+                                            console.log('errrs', errors);
+                                            if(errors) {
+                                                formik.setFieldError(field.name, errors);
+                                            }
                                         }
                                     }}
                                 />

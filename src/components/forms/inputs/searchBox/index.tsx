@@ -1,7 +1,6 @@
 import { Autocomplete, AutocompleteRenderOptionState, Value } from "@material-ui/lab";
 import { Field, FieldInputProps, FieldProps } from "formik";
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next/*";
 import { useLocalization } from "../../../../contexts/localization";
 import CustomTextField from "../textField";
 
@@ -10,12 +9,12 @@ export interface SearchBoxProps<
     Multiple extends boolean = false,
     DisableClearable extends boolean = false,
     FreeSolo extends boolean = false
-> extends Omit<FieldInputProps<T>, 'multiple' | 'onChange'> {
-    checked: false;
+> extends Omit<FieldInputProps<T>, 'multiple' | 'onChange' | 'checked' > {
     disableClearable?: DisableClearable;
     multiple?: Multiple;
     freesolo?: FreeSolo;
     required?: boolean;
+    label?: string;
     fetchOptions: (text: string) => Promise<T[]>;
     getOptionLabel: (option: T) => string;
     customRender?: (val: T, s?: AutocompleteRenderOptionState) => React.ReactNode;

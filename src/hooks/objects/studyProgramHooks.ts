@@ -46,11 +46,10 @@ const studyProgram = {
     updatedDate: new Date(Date.now()),
     valid: new Date(Date.now()),
     examRanges: [
-        { id: 1, number: 1, text: 'Wzorce projektowe i architektoniczne' },
-        { id: 2, number: 2, text: 'Metody oceny jakości architektury' },
-        { id: 3, number: 3, text: 'Modele jakości oprogramowania' },
-        { id: 4, number: 4, text: 'Systematyczny przegląd literatury' },
-
+        'Wzorce projektowe i architektoniczne',
+        'Metody oceny jakości architektury',
+        'Modele jakości oprogramowania',
+        'Systematyczny przegląd literatury'
     ],
     learningEffects: [
         {
@@ -65,11 +64,11 @@ const studyProgram = {
     ],
     fieldOfStudy: fieldOfStudy,
     modules: [
-        { id: 1, name: 'Moduł 1', blocks: { id: 1, name: 'Block 1' } },
-        { id: 2, name: 'Moduł 2', blocks: { id: 2, name: 'Block 2' } },
-        { id: 3, name: 'Moduł 3', blocks: { id: 3, name: 'Block 3' } },
-        { id: 4, name: 'Moduł 4', blocks: { id: 4, name: 'Block 4' } },
-        { id: 5, name: 'Moduł 5', blocks: { id: 5, name: 'Block 5' } }
+        { moduleId: 1, name: 'Moduł 1', ects: 7 },
+        { moduleId: 2, name: 'Moduł 2', ects: 8 },
+        { moduleId: 3, name: 'Moduł 3', ects: 9 },
+        { moduleId: 4, name: 'Moduł 4', ects: 10 },
+        { moduleId: 5, name: 'Moduł 5', ects: 11 }
     ],
     subjectCards: [
         { ...subjectCards, name: 'Rachunek prawdopodobieństwa' },

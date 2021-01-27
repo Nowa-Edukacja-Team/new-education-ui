@@ -121,6 +121,10 @@
     "StudyProgram": {
       "name": "Program nauczania",
       "name-plural": "Programy nauczania",
+      "wizards": {
+        "create": "Utwórz nowy program nauczania",
+        "update": "Utwórz nową wersję programu nauczenia"
+      },
       "actions": {
         "create": "Utwórz nowy program nauczania",
         "createVersion": "Utwórz nową wersję",
@@ -142,6 +146,15 @@
         "tabs": {
           "studyPlans": "Plany nauczania",
           "versions": "Wersje"
+        },
+        "examRanges": {
+          "name": "Zakresy egzaminu",
+          "single": "Zakres egzaminu"
+        },
+        "modules": {
+          "name": "Moduły",
+          "single": "Moduł",
+          "ects": "Limit ECTS"
         }
       },
       "details": {
