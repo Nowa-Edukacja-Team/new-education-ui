@@ -77,12 +77,83 @@
     }
   },
   "objects": {
+    "SubjectCard": {
+      "name": "Subject Card",
+      "name-plural": "Subject Cards",
+      "actions": {
+        "create": "Create new subject card",
+        "createVersion": "Create new version",
+        "showVersions": "Open version view"
+      },
+      "fields": {
+        "id": "ID",
+        "subjectCode": "Subject Code",
+        "name": "Name",
+        "supervisor": "Supervisor",
+        "status": {
+          "name": "Status",
+          "active": "Active",
+          "inactive": "Inactive"
+        },
+        "englishName": "English name",
+        "isGroup": {
+          "name": "Is group?",
+          "false": "No",
+          "true": "Yes"
+        },
+        "zzuHours": "ZZU Hours",
+        "cnpsHours": "CNPS Hours",
+        "subjectECTS": "ECTS points",
+        "subjectKind": "Kind",
+        "creditingForm": "Crediting form",
+        "block": "Blok",
+        "module": "Module"
+      },
+      "details": {
+        "main": {
+          "subjectInfo": "Subject information",
+          "subjectObjective": "Subject objectives"
+        },
+        "versions": {
+          "name": "Versions"
+        }
+      }
+    },
     "StudyProgram": {
       "name": "Study Program",
       "name-plural": "Study Programs",
+      "actions": {
+        "create": "Create new study program",
+        "createVersion": "Create new version",
+        "showVersions": "Open version view"
+      },
+      "fields": {
+        "id": "ID",
+        "fieldOfStudy": "Field of Study",
+        "faculty": "Faculty",
+        "language": "Language",
+        "status": {
+          "name": "Status",
+          "inactive": "Inactive",
+          "active": "Current"
+        },
+        "mode": "Mode",
+        "level": "Level",
+        "learningCycle": "Learning Cycle"
+      },
       "tabs": {
         "studyPlans": "Study Plans",
         "versions": "Versions"
+      },
+      "details": {
+        "main": {
+          "fieldOfStudyInfo": "Field of Study Information",
+          "modules": "Modules",
+          "examRanges": "Exam ranges"
+        },
+        "versions": {
+          "name": "Versions"
+        }
       }
     },
     "StudyPlan": {

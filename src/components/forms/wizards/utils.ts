@@ -4,7 +4,7 @@ type ValueMap = {
     [s: string]: any
 }
 
-export const validateFieldsAsync = async <T, >(fields: FieldDefinition<any, any>[], values: T) => {
+export const validateFieldsAsync = async <T, >(fields: FieldDefinition<T, any, any>[], values: T) => {
     return fields
         .map(field => {
             const valMap = values as ValueMap;

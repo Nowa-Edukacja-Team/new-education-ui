@@ -76,12 +76,83 @@
     }
   },
   "objects": {
+    "SubjectCard": {
+      "name": "Karta przedmiotu",
+      "name-plural": "Karty przedmiotów",
+      "actions": {
+        "create": "Utwórz nową kartę przedmiotu",
+        "createVersion": "Utwórz nową wersję",
+        "showVersions": "Otwórz widok wersji"
+      },
+      "fields": {
+        "id": "ID",
+        "subjectCode": "Kod przedmiotu",
+        "name": "Nazwa",
+        "supervisor": "Opiekun",
+        "status": {
+          "name": "Status",
+          "active": "Aktualna",
+          "inactive": "Nieaktywna"
+        },
+        "englishName": "Angielska nazwa",
+        "isGroup": {
+          "name": "Czy grupa kursów?",
+          "false": "Nie",
+          "true": "Tak"
+        },
+        "zzuHours": "Liczba godzin ZZU",
+        "cnpsHours": "Liczba godzin CNPS",
+        "subjectECTS": "Liczba ECTS",
+        "subjectKind": "Rodzaj",
+        "creditingForm": "Forma zaliczenia",
+        "block": "Blok",
+        "module": "Moduł"
+      },
+      "details": {
+        "main": {
+          "subjectInfo": "Informacje o przedmiocie",
+          "subjectObjective": "Cele przedmiotu"
+        },
+        "versions": {
+          "name": "Wersje"
+        }
+      }
+    },
     "StudyProgram": {
       "name": "Program nauczania",
       "name-plural": "Programy nauczania",
-      "tabs": {
-        "studyPlans": "Plany nauczania",
-        "versions": "Wersje"
+      "actions": {
+        "create": "Utwórz nowy program nauczania",
+        "createVersion": "Utwórz nową wersję",
+        "showVersions": "Otwórz widok wersji"
+      },
+      "fields": {
+        "id": "ID",
+        "fieldOfStudy": "Kierunek",
+        "faculty": "Wydział",
+        "language": "Język",
+        "status": {
+          "name": "Status",
+          "inactive": "Nieaktywny",
+          "active": "Aktualny"
+        },
+        "mode": "Tryb",
+        "level": "Stopień",
+        "learningCycle": "Cykl kształcenia",
+        "tabs": {
+          "studyPlans": "Plany nauczania",
+          "versions": "Wersje"
+        }
+      },
+      "details": {
+        "main": {
+          "fieldOfStudyInfo": "Informacje o kierunku",
+          "modules": "Moduły",
+          "examRanges": "Zakresy egzaminów"
+        },
+        "versions": {
+          "name": "Wersje"
+        }
       }
     },
     "StudyPlan": {

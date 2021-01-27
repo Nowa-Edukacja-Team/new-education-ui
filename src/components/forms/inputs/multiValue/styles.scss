@@ -1,3 +1,5 @@
+@import '../../../../variables';
+
 .multivalue-field-header {
 
     & > .multivalue-field-name {
@@ -15,4 +17,14 @@
             margin-left: 8px;
         }
     }
+}
+
+.error--message {
+    border: 1px solid $error;
+    border-radius: 3px;
+    background-color: $errorLight;
+    // font-weight: bolder;
+    margin: 5px;
+    padding: 8px;
+    color: $error;
 }

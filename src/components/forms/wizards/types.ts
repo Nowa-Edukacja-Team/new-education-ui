@@ -15,10 +15,11 @@ export interface StandardInputPropTypes<T> extends Omit<FieldInputProps<T>, 'val
 export type FieldProps = Omit<StandardProps<any, string>, 'value' | 'name' | 'multiple' | 'checked' | 'onChange' | 'onBlur'>; 
 
 // Field types
-interface BaseFieldDefinition<T, P extends FieldProps> {
+interface BaseFieldDefinition<O, T, P extends FieldProps> {
     name: string;
     label: string;
     type: FieldType;
+    changePropsOnValueUpdate: (value: O) => P;
     required?: boolean;
     errored?: boolean;
     Component: React.ComponentType<P | {}>;
@@ -28,19 +29,20 @@ interface BaseFieldDefinition<T, P extends FieldProps> {
     initialCount?: number;
 }
 
-export interface SingularFieldDefinition<T, P extends FieldProps> extends BaseFieldDefinition<T, P> {
+export interface SingularFieldDefinition<O, T, P extends FieldProps> extends BaseFieldDefinition<O, T, P> {
     type: FieldType.SINGLE;
 }
 
-export interface MultiFieldDefinition<T, P extends FieldProps> extends BaseFieldDefinition<T, P> {
+export interface MultiFieldDefinition<O, T, P extends FieldProps> extends BaseFieldDefinition<O, T, P> {
     type: FieldType.MULTI;
     minCount?: number;
     maxCount: number;
     validateComplete?: (value: T[]) => void | string | undefined;
+    validateSingle?: (value: T[]) => void | string | undefined;
     initialCount?: number;
 }
 
-export type FieldDefinition<T, P extends FieldProps> = SingularFieldDefinition<T, P> | MultiFieldDefinition<T, P>;
+export type FieldDefinition<O, T, P extends FieldProps> = SingularFieldDefinition<O, T, P> | MultiFieldDefinition<O, T, P>;
 
 // Wizard types
 interface CommonWizardConfiguration {
@@ -52,7 +54,7 @@ interface CommonWizardConfiguration {
 
 export interface WizardFormConfiguration<T> {
     initialValues: T;
-    fields: FieldDefinition<any, any>[];
+    fields: FieldDefinition<T, any, any>[];
     onSubmit: (object: T) => void | Promise<any>;
 };
 

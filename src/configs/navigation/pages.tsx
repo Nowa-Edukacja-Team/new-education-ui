@@ -32,13 +32,13 @@ const sidebarRoutes: SidebarRoute[] = [
         iconUrl: '/resources/routes/home.svg',
         label: 'sidebar.routes.views.study-plans'
     },
-    {
-        id: 3,
-        path: "/tableView/StudyEffect",
-        groupId: 'views',
-        iconUrl: '/resources/routes/home.svg',
-        label: 'sidebar.routes.views.study-effects'
-    },
+    // {
+    //     id: 3,
+    //     path: "/tableView/StudyEffect",
+    //     groupId: 'views',
+    //     iconUrl: '/resources/routes/home.svg',
+    //     label: 'sidebar.routes.views.study-effects'
+    // },
     {
         id: 4,
         path: "/tableView/SubjectCard",
@@ -60,13 +60,13 @@ const sidebarRoutes: SidebarRoute[] = [
         iconUrl: '/resources/routes/home.svg',
         label: 'sidebar.routes.wizards.create.study-plan'
     },
-    {
-        id: 7,
-        path: "/wizard/create/StudyEffect",
-        groupId: 'wizards',
-        iconUrl: '/resources/routes/home.svg',
-        label: 'sidebar.routes.wizards.create.study-effect'
-    },
+    // {
+    //     id: 7,
+    //     path: "/wizard/create/StudyEffect",
+    //     groupId: 'wizards',
+    //     iconUrl: '/resources/routes/home.svg',
+    //     label: 'sidebar.routes.wizards.create.study-effect'
+    // },
     {
         id: 8,
         path: "/wizard/create/SubjectCard",

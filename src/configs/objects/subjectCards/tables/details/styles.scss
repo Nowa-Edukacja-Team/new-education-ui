@@ -1,0 +1,64 @@
+@import '../../../../../variables';
+
+.main-details {
+    width: 100%;
+    display: flex;
+
+    .details-section {
+        padding: 15px;
+        width: 50%;
+    }
+}
+
+.section-content {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > .section-content-entry:nth-child(odd) {
+        background-color: $secondary;
+    }
+}
+
+.section-content-entry {
+    display: flex;
+    width: 100%;
+
+    & > .label, & > .value {
+        padding: 15px;
+        min-width: 200px;
+        color: $fontColor;
+    }
+
+    & > .label {
+        font-weight: bold;
+
+        &.study-objective {
+            width: 25px !important;
+            min-width: 25px !important;
+        }
+    }
+
+    & > .value {
+        width: 100%;
+
+        &.study-objective {
+            text-align: justify;
+        }
+    }
+}
+
+.section-label {
+    font-size: 1.2rem;
+    color: $fontColor;
+    position: relative;
+
+    &:after {
+        content: '';
+        width: 100%;
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        height: 2px;
+        background-color: rgba($border, 0.2);
+    }
+}

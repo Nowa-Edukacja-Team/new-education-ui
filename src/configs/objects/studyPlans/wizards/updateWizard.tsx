@@ -46,6 +46,7 @@ const studyProgram = {
     updatedDate: new Date(Date.now()),
     valid: new Date(Date.now()),
     examRanges: [],
+    subjectCards: [],
     learningEffects: [
         {
             id: 1,
@@ -54,11 +55,7 @@ const studyProgram = {
             qualificationCharacteristics: "Qualification Characteristics",
             engCompQualificationCharacteristics:
                 "Eng Comp Qualification Characteristics",
-            learningEffectRanges: [
-                { id: 1, name: "LR_1" },
-                { id: 2, name: "LR_2" },
-                { id: 3, name: "LR_3" },
-            ],
+            learningEffectRange: { id: 1, name: "LR_1" },
         },
     ],
     fieldOfStudy: fieldOfStudy,

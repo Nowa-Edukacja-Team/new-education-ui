@@ -5,6 +5,7 @@ export interface SubjectCardTableEntity {
     id: number;
     subjectCode: string;
     name: string;
+    englishName: string;
     supervisor?: string;
     isActive: boolean;
 }
@@ -26,17 +27,17 @@ export interface SubjectCardEntity {
     isCurrent: boolean;
     subjectCode: string;
     name: string;
+    englishName: string;
     isGroup: boolean;
-    zzHours: number;
+    zzuHours: number;
     cnpsHours: number;
     subjectECTS: number;
     semester: number;
     lastSemester: number;
-    module: ModuleEntity[];
+    module: ModuleEntity;
     idSupervisor: string;
-    subjectKind: SubjectKindEntity[];
-    creditingForm: CreditingFormEntity[];
-    studyProgram: StudyProgramEntity[];
+    subjectKind: SubjectKindEntity;
+    creditingForm: CreditingFormEntity;
     subjectObjective: SubjectObjectiveEntity[];
     subjectPrerequisites: SubjectPrerequisitesEntity[];
     literature: LiteratureEntity[];

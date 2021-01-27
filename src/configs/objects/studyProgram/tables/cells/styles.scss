@@ -1,0 +1,28 @@
+@import '../../../../../variables';
+
+.status-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.status {
+    color: white;
+    height: 35px;
+    min-width: 120px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.active {
+        background-color: $active;
+    }
+
+    &.inactive {
+        background-color: $inactive;
+    }
+}

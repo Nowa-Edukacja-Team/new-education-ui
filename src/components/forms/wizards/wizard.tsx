@@ -25,7 +25,9 @@ const Wizard = <T, >(props: WizardProps<T>) => {
     }
 
     const handleSubmitClick = (e: React.MouseEvent) => {
-        formik?.submitForm();
+        if(formik && formik.isValid) {
+            formik.submitForm();
+        }
     }
 
     return (
@@ -55,8 +57,6 @@ export const withFormik = <T, >(BaseComponent: React.ComponentType<WizardProps<T
             return validateFieldsAsync(fields, values);
         },
     });
-
-    console.log(formik.errors);
 
     return (
         <FormikProvider value={formik}>

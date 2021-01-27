@@ -1,9 +1,22 @@
 import { LearningEffectEntity } from "../learningEffects/types";
 import { StudyPlanEntity } from "../studyPlans/types";
+import { SubjectCardEntity } from "../subjectCards/types";
 
 export interface StudyProgramDTO {
 
 }
+
+export interface StudyProgramTableEntity {
+    id: number;
+    fieldOfStudy: string;
+    faculty: string;
+    language: string;
+    isActive: boolean;
+    mode: string;
+    level: string;
+    learningCycle: string;
+}
+
 
 export interface StudyProgramEntity {
     id: number;
@@ -17,11 +30,12 @@ export interface StudyProgramEntity {
     fieldOfStudy: FieldOfStudyEntity;
     modules: ModuleEntity[];
     isCurrent: boolean;
+    subjectCards: SubjectCardEntity[];
 }
 
 export interface ExamRangeEntity {
-    id: string;
-    number: string;
+    id: number;
+    number: number;
     text: string;
 }
 
@@ -78,7 +92,18 @@ export interface SpecializationEntity {
     name: string;
 }
 
+export interface StudyProgramModuleEntity {
+    moduleId: number;
+    ects: number;
+}
+
 export interface ModuleEntity {
+    id: number;
+    name: string;
+    blocks: BlockEntity;
+}
+
+export interface BlockEntity {
     id: number;
     name: string;
 }

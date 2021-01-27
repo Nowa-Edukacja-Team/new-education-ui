@@ -23,7 +23,7 @@ export interface LearningEffectEntity {
     universalCharacteristics: string;
     qualificationCharacteristics: string;
     engCompQualificationCharacteristics: string;
-    learningEffectRanges: LearningEffectRangeEntity[];
+    learningEffectRange: LearningEffectRangeEntity;
 }
 
 export interface LearningEffectRangeEntity {

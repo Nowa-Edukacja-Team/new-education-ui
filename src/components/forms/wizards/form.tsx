@@ -1,6 +1,6 @@
 import './styles.scss';
 
-import { FieldInputProps, ErrorMessage, Field, FormikContextType  } from 'formik';
+import { FieldInputProps, FormikContextType  } from 'formik';
 import React, { useEffect, useState } from 'react';
 import MultiValueField from '../inputs/multiValue';
 
@@ -8,15 +8,16 @@ import { FieldDefinition, FieldProps, FieldType, MultiFieldDefinition, WizardFor
 import { useLocalization } from '../../../contexts/localization';
 
 
-interface MultiValueFormFieldProps<T> {
-    definition: MultiFieldDefinition<T, FieldProps>;
+interface MultiValueFormFieldProps<O, T> {
+    definition: MultiFieldDefinition<O, T, FieldProps>;
     onValueUpdate: (value: T) => void;
+    onValidStateChange: (isValid: boolean) => void;
     fieldProps: FieldInputProps<T>;
 }
 
 
-const MultiValueFormField = <T, >(formFieldProps: MultiValueFormFieldProps<T>) => {
-    const { definition, fieldProps, onValueUpdate } = formFieldProps;
+const MultiValueFormField = <O, T>(formFieldProps: MultiValueFormFieldProps<O, T>) => {
+    const { definition, fieldProps, onValueUpdate, onValidStateChange } = formFieldProps;
     const { label, Component, props, initialCount, maxCount, minCount, validate } = definition;
     const allProps = {label, ...props};
 
@@ -32,26 +33,40 @@ const MultiValueFormField = <T, >(formFieldProps: MultiValueFormFieldProps<T>) =
                 label={label}
                 onValueChange={onValueUpdate}
                 validateSingle={validate}
+                onValidStateChange={onValidStateChange}
             />
         </div>
     )
 }
 
-interface FormFieldProps<T> {
-    definition: FieldDefinition<T, FieldProps>;
+interface FormFieldProps<O, T> {
+    definition: FieldDefinition<O, T, FieldProps>;
     fieldPropsFunc: (nameOrOptions: any) => FieldInputProps<T>;
-    onValueUpdate: (value: T) => void;
+    onValueUpdate: (value: T, isValid: boolean) => void;
+    onValidStateChange: (isValid: boolean) => void;
+    currentValue: O;
 }
 
-const FormField = <T, >(formFieldProps: FormFieldProps<T>) => {
-    const { definition, fieldPropsFunc, onValueUpdate } = formFieldProps;
-    const [ fieldProps, setFieldProps ] = useState<FieldInputProps<T>>();
+const FormField = <O, T>(formFieldProps: FormFieldProps<O, T>) => {
+    const { definition, fieldPropsFunc, onValueUpdate, onValidStateChange, currentValue } = formFieldProps;
     const { label, Component, props, name } = definition;
-    const allProps = {label, ...props};
+
+    const [ fieldProps, setFieldProps ] = useState<FieldInputProps<T>>();
+    const [ restProps, setRestProps ] = useState<any>(props);
 
     useEffect((() => {
         setFieldProps(fieldPropsFunc(name));
     }), [fieldPropsFunc, name]);
+
+    useEffect(() => {
+        if(definition.changePropsOnValueUpdate !== undefined) {
+            const updatedProps = {
+                ...props,
+                ...definition.changePropsOnValueUpdate(currentValue)
+            }
+            setRestProps(updatedProps);
+        }
+    }, [currentValue, setRestProps, definition, definition.changePropsOnValueUpdate, props]);
 
     if(!fieldProps)
         return <div />;
@@ -64,27 +79,29 @@ const FormField = <T, >(formFieldProps: FormFieldProps<T>) => {
                         definition={definition}
                         fieldProps={fieldProps}
                         onValueUpdate={onValueUpdate}
+                        onValidStateChange={onValidStateChange}
+                        {...restProps}
                     />
                 ) : (
-                    <Component {...allProps} {...fieldProps}  />
+                    <Component {...restProps} label={label} {...fieldProps}  />
                 )
             }
         </div>
     )
 }
 
-interface FormRowProps<T> {
-    field: FieldDefinition<T, FieldProps>;
+interface FormRowProps<O, T> {
+    field: FieldDefinition<O, T, FieldProps>;
     fieldPropsFunc: (nameOrOptions: any) => FieldInputProps<T>;
-    onValueUpdate: (value: T) => void;
+    onValueUpdate: (value: T, isValid: boolean) => void;
+    onValidStateChange: (isValid: boolean) => void;
     errors?: string;
+    currentValue: O;
 }
 
-const FormRow = <T, >(props: FormRowProps<T>) => {
-    const { field, fieldPropsFunc, onValueUpdate, errors } = props;
+const FormRow = <O, T>(props: FormRowProps<O, T>) => {
+    const { field, fieldPropsFunc, onValueUpdate, onValidStateChange, errors, currentValue } = props;
     const { translate } = useLocalization();
-
-    console.log()
 
     return (
         <div className='field--container row w-100 pt-2 pl-3 pr-3'>
@@ -93,8 +110,10 @@ const FormRow = <T, >(props: FormRowProps<T>) => {
                 definition={field} 
                 fieldPropsFunc={fieldPropsFunc}
                 onValueUpdate={onValueUpdate}
+                currentValue={currentValue}
+                onValidStateChange={onValidStateChange}
             />
-            { errors && <span className='error--message row w-100'>{translate(errors)}</span>}
+            { errors && errors !== 'multiInvalid' && <span className='error--message row w-100'>{translate(errors)}</span>}
         </div>
     )
 }
@@ -106,8 +125,6 @@ interface CompleteFormProps<T> extends WizardFormConfiguration<T> {
 const Form = <T, >(props: CompleteFormProps<T>) => {
     const { fields, formik } = props;
     const { getFieldProps, handleSubmit, setFieldValue } = formik;
-    
-    console.log(formik.errors);
 
     return (
             <form className='col form d-flex flex-column align-content-start' onSubmit={handleSubmit} noValidate>
@@ -119,7 +136,16 @@ const Form = <T, >(props: CompleteFormProps<T>) => {
                                     field={field}
                                     fieldPropsFunc={getFieldProps}
                                     errors={(formik.errors as any)[field.name]}
-                                    onValueUpdate={(value) => setFieldValue(field.name, value, true)}
+                                    onValueUpdate={(value) => {
+                                        setFieldValue(field.name, value, true)
+                                    }}
+                                    currentValue={formik.values}
+                                    onValidStateChange={(isValid) => {
+                                        const errs = formik.errors as any;
+                                        if(errs[field.name] !== 'multiInvalid' && !isValid) {
+                                            formik.setFieldError(field.name, 'multiInvalid');
+                                        }
+                                    }}
                                 />
                     })
                 }
