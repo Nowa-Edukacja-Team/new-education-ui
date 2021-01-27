@@ -10,7 +10,6 @@ const StudyPlansMainDetailsPage = (props: DetailPageProps) => {
     const plan = useRequestStudyPlan(id);
     const { deficits, studyProgram } = plan;
     const fieldOfStudy = studyProgram.fieldOfStudy;
-    const { faculty, language, mode, profile } = fieldOfStudy;
 
     return (
         <div className='main-details'>
@@ -19,23 +18,23 @@ const StudyPlansMainDetailsPage = (props: DetailPageProps) => {
                 <div className='section-content'>
                     <div className='section-content-entry'>
                         <div className='label'>{translate('objects.FieldOfStudy.name')}</div>
-                        <div className='value'>{fieldOfStudy.name}</div>
+                        <div className='value'>{fieldOfStudy?.name}</div>
                     </div>
                     <div className='section-content-entry'>
                         <div className='label'>{translate('objects.Faculty.name')}</div>
-                        <div className='value'>{faculty.name}</div>
+                        <div className='value'>{fieldOfStudy?.faculty.name}</div>
                     </div>
                     <div className='section-content-entry'>
                         <div className='label'>{translate('objects.Language.name')}</div>
-                        <div className='value'>{language.name}</div>
+                        <div className='value'>{fieldOfStudy?.language.name}</div>
                     </div>
                     <div className='section-content-entry'>
                         <div className='label'>{translate('objects.Mode.name')}</div>
-                        <div className='value'>{mode.name}</div>
+                        <div className='value'>{fieldOfStudy?.mode.name}</div>
                     </div>
                     <div className='section-content-entry'>
                         <div className='label'>{translate('objects.Profile.name')}</div>
-                        <div className='value'>{profile.name}</div>
+                        <div className='value'>{fieldOfStudy?.profile.name}</div>
                     </div>
                 </div>
             </div>

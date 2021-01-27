@@ -8,11 +8,11 @@ const StudyPlanCreateWizardConfiguration = {
     type: 'StudyPlan',
     submitBtnLabel: 'wizards.buttons.submit',
     initialValues: {
-        deficits: [
-            { semester: 1, limit: 0 },
-            { semester: 2, limit: 0 },
-            { semester: 3, limit: 0 }
-        ]
+        // deficits: [
+        //     { semester: 1, limit: 0 },
+        //     { semester: 2, limit: 0 },
+        //     { semester: 3, limit: 0 }
+        // ]
     },
     fields: [
         {
@@ -43,10 +43,11 @@ const StudyPlanCreateWizardConfiguration = {
             maxCount: 7,
             initialCount: 3,
             required: true,
-            validateComplete: (deficit: DeficitEntity[]) => {
+            validateComplete: (deficits: DeficitEntity[]) => {
+
                 const errors = [] as string[];
                 const found = [] as number[];
-                deficit.forEach(deficit => {
+                deficits.filter(deficit => deficit !== null).forEach(deficit => {
                     if(found.includes(deficit.semester)) {
                         errors.push('objects.StudyPlan.fields.studyProgram.validations.deficits.duplicateSemester');
                         return;

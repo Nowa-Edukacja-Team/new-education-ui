@@ -80,6 +80,10 @@
     "SubjectCard": {
       "name": "Subject Card",
       "name-plural": "Subject Cards",
+      "wizards": {
+        "create": "Create new subject card",
+        "update": "Create new subject card version"
+      },
       "actions": {
         "create": "Create new subject card",
         "createVersion": "Create new version",
@@ -107,7 +111,23 @@
         "subjectKind": "Kind",
         "creditingForm": "Crediting form",
         "block": "Blok",
-        "module": "Module"
+        "module": "Module",
+        "subjectObjective": {
+          "name": "Subject Objectives",
+          "single": "Subject Objective"
+        },
+        "subjectPrerequisites": {
+          "name": "Subject Prerequisites",
+          "single": "Subject Prerequisites"
+        },
+        "literature": {
+          "name": "Literature",
+          "single": "Literature Entry" 
+        },
+        "teachingTools": {
+          "name": "Teaching Tools",
+          "single": "Teaching tool"
+        }
       },
       "details": {
         "main": {

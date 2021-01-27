@@ -33,16 +33,17 @@ export interface SubjectCardEntity {
     cnpsHours: number;
     subjectECTS: number;
     semester: number;
-    lastSemester: number;
+    lastSemester: number
     module: ModuleEntity;
     idSupervisor: string;
     subjectKind: SubjectKindEntity;
     creditingForm: CreditingFormEntity;
-    subjectObjective: SubjectObjectiveEntity[];
-    subjectPrerequisites: SubjectPrerequisitesEntity[];
+    subjectObjective: string[];
+    subjectPrerequisites: string[];
     literature: LiteratureEntity[];
-    teachingTools: TeachingToolsEntity[];
-    subjectLearningEffects: SubjectLearningEffectEntity[];
+    teachingTools: string[];
+    subjectLearningEffects: string[];
+    idStudyProgram: number;
 }
 
 export interface SubjectKindEntity {
@@ -66,7 +67,6 @@ export interface SubjectPrerequisitesEntity {
 }
 
 export interface LiteratureEntity {
-    id: number;
     type: string;
     content: string;
 }

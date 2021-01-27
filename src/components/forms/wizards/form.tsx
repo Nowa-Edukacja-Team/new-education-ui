@@ -143,6 +143,7 @@ const Form = <T, >(props: CompleteFormProps<T>) => {
                                     fieldPropsFunc={getFieldProps}
                                     errors={(formik.errors as any)[field.name]}
                                     onValueUpdate={(value) => {
+                                        // formik.getFieldMeta(field.name).touched
                                         setFieldValue(field.name, value, true)
                                     }}
                                     currentValue={formik.values}

@@ -2,7 +2,6 @@ import SearchBox, { SearchBoxProps } from '../../../../components/forms/inputs/s
 import { WizardConfiguration, FieldType, FieldDefinition } from "../../../../components/forms/wizards/types";
 import { FieldOfStudyEntity, StudyProgramEntity, StudyProgramModuleEntity } from '../types';
 import { fieldOfStudy as fs } from '../../../../hooks/objects/studyProgramHooks';
-import { TextField, TextFieldProps } from '@material-ui/core';
 import ModulesField, { ModulesFieldProps } from '../../../../components/forms/inputs/modules';
 import CustomTextField, { CustomTextFieldProps } from '../../../../components/forms/inputs/textField';
 
@@ -18,7 +17,7 @@ const StudyProgramCreateWizardConfiguration = {
             label: 'objects.StudyProgram.fields.fieldOfStudy',
             required: true,
             type: FieldType.SINGLE,
-            validate: (val: FieldOfStudyEntity) => {
+            validate: (val: any) => {
                 if(val === undefined || val === null)
                     return 'objects.StudyProgram.fields.studyProgram.validations.empty'
             },
@@ -62,6 +61,7 @@ const StudyProgramCreateWizardConfiguration = {
         } as FieldDefinition<StudyProgramEntity, StudyProgramModuleEntity, ModulesFieldProps>
     ],
     onSubmit: (StudyProgram: StudyProgramEntity) => {
+        console.log('kaczka', StudyProgram);
         return alert(JSON.stringify(StudyProgram as StudyProgramEntity, null, 2));
     }
 } as WizardConfiguration<StudyProgramEntity>;

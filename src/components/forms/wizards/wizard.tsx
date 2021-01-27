@@ -1,13 +1,16 @@
 import './styles.scss';
 
 import React from 'react';
-import { useFormik, FormikProvider, FormikContextType } from 'formik';
+import { useFormik, FormikProvider, FormikContextType, FormikErrors } from 'formik';
 
 import Form from './form';
-import { WizardConfiguration } from './types';
+import { FieldType, WizardConfiguration } from './types';
 import { useLocalization } from '../../../contexts/localization';
 import CustomButton from '../inputs/buttons/button';
 import { validateFieldsAsync } from './utils';
+
+const event = document.createEvent('Event');
+event.initEvent('FORM_SUBMIT_EVENT', true, true);
 
 interface WizardProps<T> {
     config: WizardConfiguration<T>;
@@ -18,6 +21,7 @@ interface WizardProps<T> {
 const Wizard = <T, >(props: WizardProps<T>) => {
     const { config, isEmbedded, formik } = props;
     const { label, cancelBtnLabel, submitBtnLabel, ...formConfig } = config;
+    const { fields } = formConfig;
     const { translate } = useLocalization();
 
     const handleCancelClick = (e: React.MouseEvent) => {
@@ -25,9 +29,18 @@ const Wizard = <T, >(props: WizardProps<T>) => {
     }
 
     const handleSubmitClick = (e: React.MouseEvent) => {
-        if(formik && formik.isValid) {
-            formik.submitForm();
+        if(!formik) {
+            return;
         }
+        document.dispatchEvent(event);
+        validateFieldsAsync(fields, formik.values)
+            .then((validations) => {
+                console.log('validations...', validations);
+                formik.setErrors(validations as FormikErrors<T>);
+                if(Object.values(validations).length === 0 && formik.isValid) {
+                    formik.submitForm();
+                }
+            })
     }
 
     return (
@@ -53,9 +66,9 @@ export const withFormik = <T, >(BaseComponent: React.ComponentType<WizardProps<T
         onSubmit: (values, helpers) => {
             onSubmit(values);
         },
-        validate: (values) => {
-            return validateFieldsAsync(fields, values);
-        },
+        // validate: (values) => {
+        //     return validateFieldsAsync(fields, values);
+        // },
     });
 
     return (

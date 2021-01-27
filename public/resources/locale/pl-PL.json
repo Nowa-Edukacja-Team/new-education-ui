@@ -79,6 +79,10 @@
     "SubjectCard": {
       "name": "Karta przedmiotu",
       "name-plural": "Karty przedmiotów",
+      "wizards": {
+        "create": "Utwórz nową kartę przedmiotu",
+        "update": "Utwórz nową wersję kart przedmiotów"
+      },
       "actions": {
         "create": "Utwórz nową kartę przedmiotu",
         "createVersion": "Utwórz nową wersję",
@@ -106,7 +110,23 @@
         "subjectKind": "Rodzaj",
         "creditingForm": "Forma zaliczenia",
         "block": "Blok",
-        "module": "Moduł"
+        "module": "Moduł",
+        "subjectObjective": {
+          "name": "Cele przedmiotu",
+          "single": "Cel przedmiotu"
+        },
+        "subjectPrerequisites": {
+          "name": "Wymagania wstepne przedmiotu",
+          "single": "Wymaganie"
+        },
+        "literature": {
+          "name": "Literatura",
+          "single": "Element literatury" 
+        },
+        "teachingTools": {
+          "name": "Narzędzia nauki",
+          "single": "Narzędzie"
+        }
       },
       "details": {
         "main": {

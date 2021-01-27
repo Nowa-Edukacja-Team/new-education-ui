@@ -2,7 +2,6 @@ import './styles.scss';
 
 import { DetailPageProps } from "../../../../../components/forms/wizards/types";
 import { useLocalization } from "../../../../../contexts/localization";
-import { useRequestStudyProgram } from '../../../../../hooks/objects/studyProgramHooks';
 import { useRequestSubjectCard } from '../../../../../hooks/objects/subjectCards';
 
 const SubjectCardMainDetailsPage = (props: DetailPageProps) => {
@@ -85,7 +84,7 @@ const SubjectCardMainDetailsPage = (props: DetailPageProps) => {
                 <p className='section-label'>{translate('objects.SubjectCard.details.main.subjectObjective')}</p>
                 <div className='section-content'>
                     {
-                        subjectObjective.map(({ content }, id) => (
+                        subjectObjective.map((content, id) => (
                             <div className='section-content-entry'>
                                 <div className='label study-objective'>{id + 1}. </div>
                                 <div className='value study-objective'>{content}</div>

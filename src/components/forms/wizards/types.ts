@@ -19,7 +19,7 @@ interface BaseFieldDefinition<O, T, P extends FieldProps> {
     name: string;
     label: string;
     type: FieldType;
-    changePropsOnValueUpdate: (value: O) => P;
+    changePropsOnValueUpdate?: (value: O) => P;
     required?: boolean;
     errored?: boolean;
     Component: React.ComponentType<P | {}>;
@@ -68,4 +68,9 @@ export interface UpdateWizardConfiguration<T> {
 export interface DetailPageProps {
     type: string;
     id: number;
+}
+
+export interface SupervisorEntity {
+    id: string;
+    name: string;
 }

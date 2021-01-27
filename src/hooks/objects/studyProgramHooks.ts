@@ -39,7 +39,7 @@ export const fieldOfStudy = {
     ],
 } as FieldOfStudyEntity;
 
-const studyProgram = {
+export const studyProgram = {
     id: 1,
     version: 1,
     createdDate: new Date(Date.now()),

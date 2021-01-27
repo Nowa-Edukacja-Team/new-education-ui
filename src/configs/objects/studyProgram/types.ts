@@ -24,17 +24,17 @@ export interface StudyProgramTableEntity {
 
 export interface StudyProgramEntity {
     id: number;
-    version: number;
-    createdDate: Date;
+    version?: number;
+    createdDate?: Date;
     updatedDate?: Date;
     valid?: Date;
-    examRanges: string[];
+    examRanges?: string[];
     studyPlan?: StudyPlanEntity[];
-    learningEffects: LearningEffectEntity[];
-    fieldOfStudy: FieldOfStudyEntity;
-    modules: StudyProgramModuleEntity[];
-    isCurrent: boolean;
-    subjectCards: SubjectCardEntity[];
+    learningEffects?: LearningEffectEntity[];
+    fieldOfStudy?: FieldOfStudyEntity;
+    modules?: StudyProgramModuleEntity[];
+    isCurrent?: boolean;
+    subjectCards?: SubjectCardEntity[];
 }
 
 export interface ExamRangeEntity {

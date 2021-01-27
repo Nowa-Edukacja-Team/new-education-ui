@@ -21,42 +21,27 @@ export const subjectCards = {
     idSupervisor: 'id',
     subjectKind: { id: 5, name: 'Obowiązkowy' },
     creditingForm: { id: 5, name: 'Zaliczenie' },
+    idStudyProgram: 5,
     subjectObjective: [
-        { id: 1, content: 'SuperObjective' },
-        { id: 2, content: 'SuperObjective 2' },
-        { id: 3, content: 'SuperObjective 3' },
+        'SuperObjective',
+        'SuperObjective 2',
+        'SuperObjective 3',
     ],
     subjectPrerequisites: [
-        { id: 1, content: 'Prerequisite 1' },
-        { id: 2, content: 'Prerequisite 2' },
-        { id: 3, content: 'Prerequisite 3' },
+        'Prerequisite 1',
+        'Prerequisite 2',
+        'Prerequisite 3',
     ],
     literature: [
-        { id: 1, type: '1', content: 'Literature 1' },
-        { id: 2, type: '2', content: 'Literature 2' },
-        { id: 2, type: '3', content: 'Literature 3' },
+        { type: '1', content: 'Literature 1' },
+        { type: '2', content: 'Literature 2' },
+        { type: '3', content: 'Literature 3' },
     ],
     teachingTools: [
-        { id: 1, name: 'Teaching tool 1'},
-        { id: 2, name: 'Teaching tool 2'}
+        'Teaching tool 1',
+        'Teaching tool 2'
     ],
-    subjectLearningEffects: [
-        { 
-            identifier: '11111', 
-            content: 'Subject Learning Effect 1', 
-            learningEffects: [],
-            knowledgeVerificationForms: [
-                
-                { id: 1, name: 'Knowledge Verification Form 1', weight: 0.7 },
-                { id: 1, name: 'Knowledge Verification Form 2', weight: 0.8 },
-            
-            ],
-            learningEffectRanges: [
-                { id: 1, name: 'Learning Range 1' },
-                { id: 2, name: 'Learning Range 2' }
-            ]
-        }
-    ]
+    subjectLearningEffects: []
 } as SubjectCardEntity;
 
 export const useRequestSubjectCard = (id: number) => {
