@@ -134,7 +134,8 @@
           "subjectObjective": "Cele przedmiotu"
         },
         "versions": {
-          "name": "Wersje"
+          "name": "Wersje",
+          "single": "Wersja"
         }
       }
     },
