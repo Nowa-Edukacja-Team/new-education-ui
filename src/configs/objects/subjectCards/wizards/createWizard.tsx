@@ -21,7 +21,6 @@ const SubjectCardCreateWizardConfiguration = {
         {
             name: 'module',
             label: '',
-            // required: true,
             type: FieldType.SINGLE,
             validate: (val: any) => {
                 console.log('what here', val);
