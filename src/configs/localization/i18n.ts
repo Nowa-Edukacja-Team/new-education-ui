@@ -14,7 +14,7 @@ i18n.use(i18nHttpBackend)
         keySeparator: '.', 
         interpolation: { escapeValue: false },
         backend: {
-            loadPath: '/resources/locale/{{lng}}.json',
+            loadPath: '/resources/locales/{{lng}}.json',
             allowMultiLoading: true,
             crossDomain      : false
         }
