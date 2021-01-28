@@ -28,7 +28,7 @@ const DataGrid = ({type} : { type: string }) => {
                 disableExtendRowFullWidth={false}
                 onSortModelChange={handleSortChange}
                 components={{
-                    footer: FooterOverlay,
+                    Footer: FooterOverlay,
                     loadingOverlay: LoadingOverlay,
                     noRowsOverlay: NoRowsOverlay,
                     errorOverlay: ErrorOverlay
