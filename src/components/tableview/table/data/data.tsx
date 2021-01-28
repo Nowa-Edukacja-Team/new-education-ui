@@ -28,10 +28,10 @@ const DataGrid = ({type} : { type: string }) => {
                 disableExtendRowFullWidth={false}
                 onSortModelChange={handleSortChange}
                 components={{
-                    footer: FooterOverlay,
-                    loadingOverlay: LoadingOverlay,
-                    noRowsOverlay: NoRowsOverlay,
-                    errorOverlay: ErrorOverlay
+                    Footer: FooterOverlay,
+                    LoadingOverlay: LoadingOverlay,
+                    NoRowsOverlay: NoRowsOverlay,
+                    ErrorOverlay: ErrorOverlay
                 }}
                 onSelectionChange={(selected) => setSelectedRows(selected.rowIds || [])}
             />
