@@ -30,18 +30,11 @@ pipeline {
         sh "docker rmi $PACKAGE:$TAG"
       }
     }
-    stage('Create namespace if not present') {
-      steps {
-        withKubeConfig([credentialsId: 'kubeconfig']) {
-          sh 'kubectl get namespace ui || kubectl create namespace ui'
-        }
-      }
-    }
     stage('Deploy to cluster') {
       steps {
         withKubeConfig([credentialsId: 'kubeconfig']) {
-          sh 'cat ./kubernetes/deployment.yml | sed "s#{{PACKAGE_VERSION}}#$TAG#g" | sed "s#{{PACKAGE_NAME}}#$PACKAGE#g" | kubectl apply -n ui -f -'
-          sh 'kubectl apply -n ui -f ./kubernetes/service.yml'
+          sh 'cat ./kubernetes/deployment.yml | sed "s#{{PACKAGE_VERSION}}#$TAG#g" | sed "s#{{PACKAGE_NAME}}#$PACKAGE#g" | kubectl apply -f -'
+          sh 'kubectl apply -f ./kubernetes/service.yml'
         }
       }
     }
